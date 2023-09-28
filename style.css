@@ -98,6 +98,7 @@ a {
 }
 
 .tabela-gastos-mensais-atual{
+    background-color: var(--fundo-tabela);
  /*Tentar colocar tabela aqui dentro*/
 }
 
