@@ -11,14 +11,12 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: 'Open Sans', sans-serif;
     font-size: 2rem;
     color: black;
     line-height: 1.5;
 }
-
 .menu {
     background-color: var(--primary-color);
     position: fixed;
@@ -32,33 +30,27 @@ body {
     padding: 1.5rem;
     z-index: 1;
 }
-
 .menu-adc-part {
     padding-right: 7rem;
-
 }
-
 .menu:hover {
     background: var(--secundary-color); 
     transition: all 300ms ease-in-out;
 }
-
 a {
     font-size: 1.2rem;
     text-decoration: none;
     color: var(--white);
-
 }
 
 .menu-spacing {
     height: 6.5rem;
 }
   
-  
   /* LATERAL ESQUERDA SIDE BAR */
-
   .barra-lateral-esquerda {
     display: inline-block;
+    position: fixed;
     background-color: var(--primary-color);
     width: 20%;
     height: 40.91rem;
@@ -98,7 +90,6 @@ a {
 }
 
 .tabela-gastos-mensais-atual{
-    background-color: var(--fundo-tabela);
  /*Tentar colocar tabela aqui dentro*/
 }
 
@@ -117,6 +108,19 @@ table, th, td {
     color: var(--white);
 }
 
+.tabela-spacing {
+    height: 2.8rem;
+}
+
+.espaco-tabela-proximos{
+    display: inline-block;
+    align-items: center;
+    color: var(--white);
+    border-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+  }
+
 
   /* LATERAL DIREITA */
 
@@ -130,3 +134,53 @@ table, th, td {
     border-top-left-radius: 1.5rem;
     border-bottom-left-radius: 1.5rem;
   }
+
+nav {
+    background-color: var(--secundary-color);
+    border-top-right-radius: 1.5rem;
+    border-top-left-radius: 1.5rem;
+
+}
+
+.titulo-barra-esquerda {
+    padding-left: 1rem;
+}
+
+.titulo-barra-esquerda:hover {
+    background-color: var(--primary-color);
+}
+
+.botoes-barra-direita {
+    padding-left: 1rem;
+}
+
+input {
+    all: unset;
+    width: 7rem;
+    height: 1.8rem;
+
+    font-size: 1rem;
+    border: 0.1rem solid;
+    border-radius: 1.5rem;
+    padding-left: 1rem;
+    background-color: var(--secundary-color);
+}
+
+input::placeholder {
+    color: var(--white);
+}
+
+button {
+    width: 10rem;
+    height: 1.8rem;
+    font-size: 0.8rem;
+    color: var(--white);
+    border: 0.1rem solid black;
+    border-radius: 1.5rem;
+    background-color: var(--secundary-color);
+}
+
+
+@media (max-width: 768px) {
+
+}
