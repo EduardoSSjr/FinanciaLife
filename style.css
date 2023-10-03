@@ -89,8 +89,13 @@ a {
     padding: 0.2rem 0.5rem 0.2rem 0.5rem; /* superior | direita | inferior | esquerda */
 }
 
-.tabela-gastos-mensais-atual{
- /*Tentar colocar tabela aqui dentro*/
+.tabela-gastos-mensais-atual table {
+    background-color: var(--fundo-tabela);
+    color: black;
+    font-size: 1rem;
+    width: 15rem;
+    border-collapse: collapse;
+    border: 1px solid black;
 }
 
 table, th, td {
@@ -155,10 +160,10 @@ nav {
 }
 
 input {
+    display: flex;
     all: unset;
-    width: 7rem;
-    height: 1.8rem;
-
+    width: 10rem;
+    height: 2rem;
     font-size: 1rem;
     border: 0.1rem solid;
     border-radius: 1.5rem;
@@ -172,15 +177,71 @@ input::placeholder {
 
 button {
     width: 10rem;
-    height: 1.8rem;
-    font-size: 0.8rem;
+    height: 2rem;
+    font-size: 1rem;
     color: var(--white);
     border: 0.1rem solid black;
     border-radius: 1.5rem;
     background-color: var(--secundary-color);
+    text-align: center;
 }
 
 
-@media (max-width: 768px) {
+.espaco-tabela-este-mes {
+    padding-left: 1rem;
+    padding-top: 1rem;
+    max-height: 10rem;
+    width: 45rem;
+}
+
+.tabela-este-mes {
+    display: block;
+    text-align: center;
+    align-items: center;
+    border-top-left-radius: 1rem;    
+    width: 45rem;
+    height: 10rem;
+    max-height: 10rem;
+    margin-bottom: 10rem;
+    overflow-y: scroll;
+}
+
+.tabela-este-mes td {
+    width: 15rem;
+}
+
+.tabela-este-mes tr:first-child {
+    position:fixed;
+    width: 45rem;
+}
+
+
+
+/* RESPONSIVIDADE */
+
+@media (min-width: 769px) {
+.barra-lateral-esquerda {
+    display: inline-block;
+    position: fixed;
+    background-color: var(--primary-color);
+    width: 20%;
+    height: 54.1rem;
+    border-top-right-radius: 3rem;
+    border-bottom-right-radius: 1.5rem;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+.barra-lateral-direita {
+    display: inline-block;
+    position: fixed;
+    right: 0;
+    background-color: var(--primary-color);
+    width: 70%;
+    height: 54.1rem;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    }
 
 }
