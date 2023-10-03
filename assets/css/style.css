@@ -33,10 +33,7 @@ body {
 .menu-adc-part {
     padding-right: 7rem;
 }
-.menu:hover {
-    background: var(--secundary-color); 
-    transition: all 300ms ease-in-out;
-}
+
 a {
     font-size: 1.2rem;
     text-decoration: none;
@@ -142,7 +139,6 @@ table, th, td {
 
 nav {
     background-color: var(--secundary-color);
-    border-top-right-radius: 1.5rem;
     border-top-left-radius: 1.5rem;
 
 }
@@ -189,7 +185,7 @@ button {
 
 .espaco-tabela-este-mes {
     padding-left: 1rem;
-    padding-top: 1rem;
+    padding-top: 3rem;
 }
 
 .tabela-este-mes {
@@ -203,15 +199,9 @@ button {
     overflow-y: scroll;
 }
 
-.tabela-este-mes td {
-    width: 15rem;
-}
-
 .tabela-este-mes tr:first-child {
-    display: flex;
-    position:fixed;
+    position: fixed;
     width: 45rem;
-    border-top-right-radius: 1.5rem;
 }
 
 
