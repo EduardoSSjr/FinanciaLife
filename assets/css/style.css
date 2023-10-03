@@ -53,7 +53,7 @@ a {
     position: fixed;
     background-color: var(--primary-color);
     width: 20%;
-    height: 40.91rem;
+    height: 42.5rem;
     border-top-right-radius: 3rem;
     border-bottom-right-radius: 1.5rem;
     align-items: center;
@@ -89,7 +89,7 @@ a {
     padding: 0.2rem 0.5rem 0.2rem 0.5rem; /* superior | direita | inferior | esquerda */
 }
 
-.tabela-gastos-mensais-atual table {
+.tabela-gastos-mensais-atual {
     background-color: var(--fundo-tabela);
     color: black;
     font-size: 1rem;
@@ -135,7 +135,7 @@ table, th, td {
     right: 0;
     background-color: var(--primary-color);
     width: 70%;
-    height: 40.91rem;
+    height: 42.5rem;
     border-top-left-radius: 1.5rem;
     border-bottom-left-radius: 1.5rem;
   }
@@ -190,17 +190,14 @@ button {
 .espaco-tabela-este-mes {
     padding-left: 1rem;
     padding-top: 1rem;
-    max-height: 10rem;
-    width: 45rem;
 }
 
 .tabela-este-mes {
     display: block;
     text-align: center;
     align-items: center;
-    border-top-left-radius: 1rem;    
     width: 45rem;
-    height: 10rem;
+    height: 15rem;
     max-height: 10rem;
     margin-bottom: 10rem;
     overflow-y: scroll;
@@ -211,15 +208,17 @@ button {
 }
 
 .tabela-este-mes tr:first-child {
+    display: flex;
     position:fixed;
     width: 45rem;
+    border-top-right-radius: 1.5rem;
 }
 
 
 
 /* RESPONSIVIDADE */
 
-@media (min-width: 769px) {
+/* @media (min-width: 769px) {
 .barra-lateral-esquerda {
     display: inline-block;
     position: fixed;
@@ -244,4 +243,4 @@ button {
     border-bottom-left-radius: 1.5rem;
     }
 
-}
+} */
