@@ -11,6 +11,37 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+*::-webkit-scrollbar {
+    height: 10px;
+    width: 16px;
+  }
+  *::-webkit-scrollbar-track {
+    border-radius: 0 1.5rem 1.5rem 0;
+    background-color: #DFE9EB;
+  }
+  
+  *::-webkit-scrollbar-track:hover {
+    background-color: #B8C0C2;
+  }
+  
+  *::-webkit-scrollbar-track:active {
+    background-color: #B8C0C2;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    border-radius: 0 1.5rem 1.5rem 0;
+    background-color: var(--secundary-color);
+  }
+  
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: var(--secundary-color);
+  }
+  
+  *::-webkit-scrollbar-thumb:active {
+    background-color: var(--secundary-color);
+  }
+
 body {
     font-family: 'Open Sans', sans-serif;
     font-size: 2rem;
@@ -98,6 +129,10 @@ table, th, td {
     /*Corrigir border radius*/
 }
 
+.titulo-tabela{
+    width: 100%;
+}
+
 .titulo-tabela th{
     background-color: var(--secundary-color);
     color: var(--white);
@@ -120,7 +155,10 @@ table, th, td {
   /* LATERAL DIREITA */
 
   .barra-lateral-direita {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     position: fixed;
     right: 0;
     background-color: var(--primary-color);
@@ -139,24 +177,18 @@ table, th, td {
 
 }
 
-.titulo-sidebar-esquerda {
-    background-color: var(--secundary-color);
-    border-top-right-radius: 1.5rem;
-    color: var(--white);
-    font-size: 1.8rem;
-    padding: 0.5rem;
-    border-top-left-radius: 1.5rem;
-  }
+.barra-lateral-direita header{
+    width: 100%;
+}
 
 .titulo-sidebar-direita {
     background-color: var(--secundary-color);
-    border-top-right-radius: 1.5rem;
     color: var(--white);
     font-size: 1.8rem;
     padding: 0.5rem;
     border-top-left-radius: 1.5rem;
     padding-left: 1rem;
-
+    width: 100%;
 }
 
 .topo-barra-direita {
@@ -164,14 +196,19 @@ table, th, td {
 }
 
 .botoes-barra-direita {
-    display: inline-block;
-    padding-left: 1.5rem;
+    display: flex;
+    align-items: center;
+    width: 90%;
+    justify-content: space-between;
 }
 
+.botoes-barra-direita section{
+    display: flex;
+}
 .espaco-saldo-atual {
-    display:inline-block;
-    padding-left: 26rem;
-    margin-top: -3.2rem;
+    display:flex;
+    flex-direction: column;
+    padding: 20px;
 }
 
 .titulo-saldo-atual {
@@ -195,9 +232,9 @@ table, th, td {
 }
 
 .espaco-saldo-prox {
-    display:inline-block;
-    padding-left: 26+18rem;
-    margin-top: -3.2rem;
+    display:flex;
+    flex-direction: column;
+    padding: 20px;
 }
 
 .titulo-saldo-prox {
@@ -231,12 +268,9 @@ table, th, td {
     font-size: 1.5rem;
     border: 0.1rem solid black;
     border-radius: 1.5rem;
-    padding-left: 1rem;
     background-color: var(--secundary-color);
-    margin-right: 4rem;
-    margin-top: 1rem;
     cursor: url(http://www.webcis.com.br/images/lupa-clientes.cur), default;
-    
+    margin: 12px 12px;
 }
 
 .botoes-barra-direita input::placeholder {
@@ -245,36 +279,50 @@ table, th, td {
 }
 
 .espaco-tabela-este-mes {
-    display: inline-block;
-    width: 50rem;
-    padding-left: 1rem;
-    padding-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.espaco-este-mes table{
+    width: 73rem;
+    text-align: center; 
+}
+
+.espaco-este-mes {
+    max-height: 20rem;
+    overflow-y: scroll;
+    display: flex; 
+    border-radius: 1.5rem;
+
 }
 
 .tabela-este-mes {
-    margin-top: -1rem;
-    display: block;
-    text-align: center;
-    align-items: center;
-    width: 50rem;
-    height: 15rem;
-    max-height: 20rem;
-    margin-bottom: 10rem;
-    overflow-y: scroll;
-    border-radius: 1.5rem;
-}
-
-.tabela-este-mes th, 
-.tabela-este-mes td {
-    height: 3rem;
-    font-size: 1.5rem;
+    width: calc(100% - 13rem);
 }
 
 .tabela-este-mes tr:first-child {
     position: sticky;
     top: 0;
-    width: 50rem;
+    width: 100%;
 }
+
+/*Pare aqui a*/
+
+.tabela-este-mes th{
+    height: 4rem;
+    
+}
+
+
+.tabela-este-mes td {
+    height: 3rem;
+}
+
+
 
 
 /* RESPONSIVIDADE */

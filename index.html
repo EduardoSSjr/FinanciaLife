@@ -10,8 +10,8 @@
     <script src="https://kit.fontawesome.com/cf6fa412bd.js"></script>
 </head>
 <body>
-    <!-- menu nav -->
-    <nav>
+    <!-- menu header -->
+    <header>
         <div class="menu">
             <div class="menu-left">
                 <a href="#">☰</a> <!-- Ícone para o menu (pode ser ativado com JavaScript) -->
@@ -22,7 +22,7 @@
                 <a class="menu-entrar" href="login.html">Entrar</a> <!-- Link para página de login -->
             </div>
         </div>
-    </nav>
+    </header>
     <div class="menu-spacing"></div>
     
     <!-- parte lateral esquerda -->
@@ -80,28 +80,31 @@
 
     <!-- parte lateral direita -->
     <section class="barra-lateral-direita">
-        <nav>
+        <header>
             <h2 class="titulo-sidebar-direita">Suas Finanças</h2> <!-- Título da barra lateral direita -->
-        </nav>
+        </header>
 
         <div class="botoes-barra-direita">
             <!--  USO FUTURO -->
             <input class="pesquisar" type="search" placeholder="Pesquisar"> <!-- Campo de pesquisa (uso futuro) -->
-        </div>
+            <section>
+                <div class="espaco-saldo-atual">
+                    <h2 class="titulo-saldo-atual">Saldo Atual</h2> <!-- Título para o saldo atual -->
+                    <h3 class="saldo-atual">R$00,00</h3> <!-- Valor do saldo atual -->
+                </div>
 
-        <div class="espaco-saldo-atual">
-            <h2 class="titulo-saldo-atual">Saldo Atual</h2> <!-- Título para o saldo atual -->
-            <h3 class="saldo-atual">R$00,00</h3> <!-- Valor do saldo atual -->
-        </div>
-
-        <div class="espaco-saldo-prox">
-            <h2 class="titulo-saldo-prox">Saldo Prox. Mês</h2> <!-- Título para o saldo atual -->
-            <h3 class="saldo-prox">R$00,00</h3> <!-- Valor do saldo atual -->
+                <div class="espaco-saldo-prox">
+                    <h2 class="titulo-saldo-prox">Saldo Prox. Mês</h2> <!-- Título para o saldo atual -->
+                    <h3 class="saldo-prox">R$00,00</h3> <!-- Valor do saldo atual -->
+                </div>
+            </section>
         </div>
 
 
         <!-- Tabela para os gastos deste mês na barra lateral direita -->
         <div class="espaco-tabela-este-mes">
+            <div class="espaco-este-mes">
+
             <table class="tabela-este-mes">
                 <tr class="titulo-tabela">
                     <th>Gasto</th>
@@ -134,10 +137,18 @@
                     <td>Data 05</td>
                     <td>Valor</td>
                 </tr>
+                <tr>
+                    <td>Gasto 05</td>
+                    <td>Data 05</td>
+                    <td>Valor</td>
+                </tr>
                 <!-- Repita as linhas conforme necessário -->
             </table>
-            <a href="cadastro_despesa.html">Adicionar novo Gasto +</a> <!-- Link para adicionar novo gasto -->
+            </div>
         </div>
+
+        <a href="cadastro_despesa.html">Adicionar novo Gasto +</a> <!-- Link para adicionar novo gasto -->
+
 
     
     </section>
