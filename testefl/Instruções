@@ -1,0 +1,33 @@
+// Saldo Prox & Atual
+somar as linhas de uma coluna e criar uma nova variavel
+
+tabela saldo somar receitas, subtrair despesas
+tabelaSaldo:
+(saldo atual em R$) = +(ALL receitas) (- (ALL despesas))
+
+
+//Possivel mudança no grafico
+quando clicar subir tabela listando, usar um box-shadow
+
+//Código do banco
+CREATE DATABASE financialife
+
+//Código das tabelas
+CREATE TABLE despesas (
+    id int(4) AUTO_INCREMENT PRIMARY KEY,
+    gasto varchar(30) NOT NULL,
+    desp_data date NOT NULL,
+    valor_despesa DECIMAL(10,2) NOT NULL
+);
+
+CREATE TABLE receitas (
+    id int(4) AUTO_INCREMENT PRIMARY KEY,
+    receber varchar(30) NOT NULL,
+    rec_data date NOT NULL,
+    valor_receita DECIMAL(10,2) NOT NULL
+);
+
+CREATE TABLE saldoatual (
+	id int(4) AUTO_INCREMENT PRIMARY KEY,
+    valor_saldoatual DECIMAL(10,2) NOT NULL    
+);
