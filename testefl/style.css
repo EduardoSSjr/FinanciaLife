@@ -302,14 +302,14 @@ table, th, td {
 
 
 .espaco-este-mes {
-    max-height: 20rem;
+    max-height: 15rem;
     overflow-y: scroll;
     display: flex; 
     border-radius: 1.5rem;
 }
 
 .esp {
-    max-height: 20rem;
+    max-height: 15rem;
     overflow-y: scroll;
 }
 
