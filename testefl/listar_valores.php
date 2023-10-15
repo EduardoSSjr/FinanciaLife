@@ -129,10 +129,44 @@ $dados_json = json_encode($dados_grafico);
                     
                 </h3> <!-- Valor do saldo atual -->
             </div>
-    
+            <a class="botao_editar_saldoatual" href="atualizar_saldo.php">Editar</a>
+
             <div class="espaco-saldo-prox">
                 <h2 class="titulo-saldo-prox">Saldo Prox. Mês</h2> <!-- Título para o saldo atual -->
-                <h3 class="saldo-prox">R$00,00</h3> <!-- Valor do saldo atual -->
+
+                <h3 class="saldo-prox">
+                <?php
+                    // Suponha que você já tem uma conexão ao banco de dados $conn
+
+                    // Execute a consulta SQL para obter os valores
+                    $queryReceitas = "SELECT SUM(valor_receita) as total_receitas FROM receitas";
+                    $queryDespesas = "SELECT SUM(valor_despesa) as total_despesas FROM despesas";
+                    $querySaldoAtual = "SELECT valor_saldoatual FROM saldoatual";
+
+                    $resultReceitas = $conn->query($queryReceitas);
+                    $resultDespesas = $conn->query($queryDespesas);
+                    $resultSaldoAtual = $conn->query($querySaldoAtual);
+
+                    if ($resultReceitas && $resultDespesas && $resultSaldoAtual) {
+                        $rowReceitas = $resultReceitas->fetch_assoc();
+                        $rowDespesas = $resultDespesas->fetch_assoc();
+                        $rowSaldoAtual = $resultSaldoAtual->fetch_assoc();
+                        
+                        $totalReceitas = $rowReceitas['total_receitas'];
+                        $totalDespesas = $rowDespesas['total_despesas'];
+                        $saldoAtual = $rowSaldoAtual['valor_saldoatual'];
+                        
+                        // Calcula o saldo do próximo mês
+                        $saldoProximoMes = $saldoAtual + $totalReceitas - $totalDespesas;
+                        
+                        echo "R$ " . $saldoProximoMes . ".00" . "<br>";
+                    } else {
+                        echo "Erro na consulta SQL.";
+                }
+                ?>
+
+
+                </h3> <!-- Valor do saldo atual -->
             </div>
         </div>
 

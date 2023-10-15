@@ -244,6 +244,16 @@ table, th, td {
     border-bottom-right-radius: 1.5rem;
 }
 
+.botao_editar_saldoatual {
+    border: 2px solid black;
+    border-radius: 1.5rem;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: var(--white);
+    background-color: var(--secundary-color);
+}
+
 .espaco-saldo-prox {
     display:flex;
     flex-direction: column;
