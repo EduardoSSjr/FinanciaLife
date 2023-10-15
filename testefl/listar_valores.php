@@ -138,9 +138,10 @@ $dados_json = json_encode($dados_grafico);
                 <?php
                     // Suponha que você já tem uma conexão ao banco de dados $conn
 
+                    $mes_atual = date("Y-m");
                     // Execute a consulta SQL para obter os valores
-                    $queryReceitas = "SELECT SUM(valor_receita) as total_receitas FROM receitas";
-                    $queryDespesas = "SELECT SUM(valor_despesa) as total_despesas FROM despesas";
+                    $queryReceitas = "SELECT SUM(valor_receita) as total_receitas FROM receitas WHERE DATE_FORMAT(rec_data, '%Y-%m') = '$mes_atual'";
+                    $queryDespesas = "SELECT SUM(valor_despesa) as total_despesas FROM despesas WHERE DATE_FORMAT(desp_data, '%Y-%m') = '$mes_atual'";
                     $querySaldoAtual = "SELECT valor_saldoatual FROM saldoatual";
 
                     $resultReceitas = $conn->query($queryReceitas);
@@ -157,7 +158,7 @@ $dados_json = json_encode($dados_grafico);
                         $saldoAtual = $rowSaldoAtual['valor_saldoatual'];
                         
                         // Calcula o saldo do próximo mês
-                        $saldoProximoMes = $saldoAtual + $totalReceitas - $totalDespesas;
+                        $saldoProximoMes = ($saldoAtual + $totalReceitas) - $totalDespesas;
                         
                         echo "R$ " . $saldoProximoMes . ".00" . "<br>";
                     } else {
