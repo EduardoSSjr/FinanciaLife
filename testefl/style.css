@@ -132,7 +132,7 @@ body {
 .espaco-tabela-proximos table,
 .espaco-tabela-proximos table th,
 .espaco-tabela-proximos table td,
-table, th, td {
+.espaco-tabela-este-mes table {
     background-color: var(--fundo-tabela);
     color: black;
     font-size: 1rem;
@@ -310,6 +310,25 @@ table, th, td {
     height: 100%;
 }
 
+.espaco-tabela-este-mes table th,
+.espaco-tabela-este-mes table td {
+    font-size: 1rem;
+    width: 15rem;
+    border-collapse: collapse;
+    border: 1px solid black;
+    /*Corrigir border radius*/
+}
+
+.espaco-tabela-este-mes table th{
+    color: var(--white);
+}
+
+
+.texto_editar_despesa,
+.texto_editar_receita {
+    text-decoration: none;
+    color: var(--white);
+}
 
 .espaco-este-mes {
     max-height: 15rem;

@@ -183,35 +183,39 @@ $dados_json = json_encode($dados_grafico);
                 $mes_atual = date("Y-m"); // Obtém o mês atual no formato "aaaa-mm"
 
                 // Consulta SQL para listar Despesas e Receitas do mês atual
-                $sql = "SELECT 'despesa' AS tipo, gasto AS titulo, desp_data AS data, valor_despesa AS valor FROM despesas WHERE DATE_FORMAT(desp_data, '%Y-%m') = '$mes_atual'
-                        UNION
-                        SELECT 'receita' AS tipo, receber AS titulo, rec_data AS data, valor_receita AS valor FROM receitas WHERE DATE_FORMAT(rec_data, '%Y-%m') = '$mes_atual'
-                        ORDER BY data ASC";
-                
+                $sql = "SELECT 'despesa' AS tipo, id, gasto AS titulo, desp_data AS data, valor_despesa AS valor FROM despesas WHERE DATE_FORMAT(desp_data, '%Y-%m') = '$mes_atual'
+                UNION
+                SELECT 'receita' AS tipo, id, receber AS titulo, rec_data AS data, valor_receita AS valor FROM receitas WHERE DATE_FORMAT(rec_data, '%Y-%m') = '$mes_atual'
+                ORDER BY data ASC";
                 $resultado = mysqli_query($conn, $sql);
-                
+
                 echo '<table class="tabela-este-mes">';
-                echo '<tr class="titulo-tabela"><th>Tipo</th><th>Título</th><th>Data</th><th>Valor</th></tr>';
-                
+                echo '<tr class="titulo-tabela"><th>Tipo</th><th>Título</th><th>Data</th><th>Valor</th><th>Editar</th></tr>';
+
                 while ($linha = mysqli_fetch_assoc($resultado)) {
-                    $tipo = $linha['tipo'];
+                    $tipo = ucfirst($linha['tipo']); // Utilize ucfirst para capitalizar a primeira letra
                     $titulo = $linha['titulo'];
                     $data = $linha['data'];
                     $valor = $linha['valor'];
-                
-                    // Defina o background com base no tipo (vermelho para despesas e verde para receitas)
-                    $background_color = ($tipo == 'despesa') ? 'red' : 'green';
+
+                    // Agora, você pode definir a cor de fundo com base no tipo
+                    $background_color = ($linha['tipo'] === 'despesa') ? 'rgba(255, 0, 0, 0.9)' : 'rgba(75, 210, 49, 0.9)';
 
                     echo "<tr style='background-color: $background_color;'>";
                     echo "<td>$tipo</td>";
                     echo "<td>$titulo</td>";
                     echo "<td>$data</td>";
                     echo "<td>$valor</td>";
+                    if ($linha['tipo'] === 'despesa') {
+                        echo "<td><a class=\"texto_editar_despesa\" href='editar_despesa.php?id=" . $linha['id'] . "'>Editar</a></td>";
+                    } elseif ($linha['tipo'] === 'receita') {
+                        echo "<td><a class=\"texto_editar_receita\" href='editar_receita.php?id=" . $linha['id'] . "'>Editar</a></td>";
+                    }
                     echo "</tr>";
                 }
-                
+
                 echo "</table>";
-            ?>
+                ?>
         </div>
         <div class="botoes-adicionar">
         <a class="botao-adicionar-despesa" href="adc_despesa.php">Adicionar nova Despesa+</a> <!-- Link para adicionar novo gasto -->
@@ -266,6 +270,18 @@ $dados_json = json_encode($dados_grafico);
         var meuGrafico = new Chart(ctx, {
             type: 'pie',
             data: data,
+            options: {
+                color: '#000', // Define a cor do texto como preto
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                size: 18, // Define o tamanho da fonte
+                            }
+                        }
+                    }
+                }
+            }
         });
     </script>
 
