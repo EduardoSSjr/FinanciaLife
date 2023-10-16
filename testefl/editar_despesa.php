@@ -30,9 +30,12 @@ if (isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Despesa</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/estilo_adicionar.css">
 </head>
 <body>
+
+    <section class="container">
     <h1>Editar Despesa</h1>
     <form action="atualizar_despesa.php" method="post">
         <input type="hidden" name="id" value="<?php echo $id; ?>"> <!-- Inclua o ID como um campo oculto -->
@@ -44,5 +47,6 @@ if (isset($_GET['id'])) {
         <input type="text" name="valor" value="<?php echo $valor; ?>"><br>
         <input type="submit" value="Salvar Alterações">
     </form>
+    </section>
 </body>
 </html>

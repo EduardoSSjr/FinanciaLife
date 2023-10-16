@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receita inserida</title>
+</head>
+<body>
+
+<section class="container">
+
 <?php
 $receber = $_POST['receber'];
 $rec_data = $_POST['rec_data'];
@@ -16,7 +27,7 @@ $sql = "INSERT INTO receitas (receber, rec_data, valor_receita) VALUES ('$recebe
 
 // Executar a consulta e verificar se foi bem-sucedida
 if (mysqli_query($conn, $sql)) {
-    echo "Inserido com sucesso";
+    echo "Receita inserida com sucesso";
 } else {
     echo "Erro ao inserir: " . mysqli_error($conn);
 }
@@ -25,5 +36,12 @@ if (mysqli_query($conn, $sql)) {
 mysqli_close($conn);
 ?>
 
+<link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/estilo_adicionar.css">
 <br>
-<input type="submit" value="Inserir Receita" onclick="location.href='listar_valores.php'">
+<input class="input-confirmar" type="submit" value="Confirmar" onclick="location.href='listar_valores.php'">
+
+</section>
+
+</body>
+</html>

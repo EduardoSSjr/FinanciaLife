@@ -44,7 +44,8 @@ $dados_json = json_encode($dados_grafico);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FinanciaLife</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/estilo_telaprincipal.css">
     <script src="https://kit.fontawesome.com/cf6fa412bd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 </head>
