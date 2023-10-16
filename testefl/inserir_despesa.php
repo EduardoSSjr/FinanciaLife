@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-<section class="container">
+
 <?php
 $gasto = $_POST['gasto'];
 $desp_data = $_POST['desp_data'];
@@ -25,22 +16,13 @@ if (!$conn) {
 $sql = "INSERT INTO despesas (gasto, desp_data, valor_despesa) VALUES ('$gasto', '$desp_data', '$valor_despesa')";
 
 // Executar a consulta e verificar se foi bem-sucedida
-if (mysqli_query($conn, $sql)) {
-    echo "Despesa inserida com sucesso";
+if ($conn->query($sql) === TRUE) {
+    // Redirecione para a página principal ou exiba uma mensagem de sucesso
+    header("Location: listar_valores.php");
 } else {
-    echo "Erro ao inserir: " . mysqli_error($conn);
+    // Exiba uma mensagem de erro em caso de falha na atualização
+    echo "Erro ao inserir a despesa: " . $conn->error;
 }
-
 // Fechar a conexão com o banco de dados
 mysqli_close($conn);
 ?>
-
-<link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/estilo_adicionar.css">
-<br>
-<input class="input-confirmar" type="submit" value="Confirmar" onclick="location.href='listar_valores.php'">
-
-</section>
-
-</body>
-</html>
