@@ -20,6 +20,12 @@
     font-size: 1.2rem;
     text-decoration: none;
     color: var(--white);
+    border-radius: 1rem;
+}
+
+.menu a:hover {
+    background: rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
 }
 
 .menu-spacing {
@@ -102,11 +108,12 @@
 }
 
 .tabela-spacing {
-    height: 2.8rem;
+    height: 3.5rem;
 }
 
 .espaco-tabela-proximos{
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     color: var(--white);
     border-radius: 1.5rem;
@@ -174,10 +181,11 @@
     padding: 20px;
 }
 
-.titulo-saldo-atual {
+.titulo-saldo-atual,
+.titulo-saldo-prox {
     background-color: var(--secundary-color);    
     height: 3rem;
-    width: 18rem;
+    width: 16rem;
     font-size: 2rem;
     text-align: center;
     color: var(--white);
@@ -185,10 +193,11 @@
     border-top-right-radius: 1.5rem;
 }
 
-.saldo-atual {
+.saldo-atual,
+.saldo-prox {
     background-color: var(--fundo-tabela);    
     height: 4rem;
-    width: 18rem;
+    width: 16rem;
     text-align: center;
     border-bottom-left-radius: 1.5rem;
     border-bottom-right-radius: 1.5rem;
@@ -204,30 +213,15 @@
     background-color: var(--secundary-color);
 }
 
+.botao_editar_saldoatual:hover {
+    background-color: var(--dark-secundary-color);
+    transition: 0.3s;
+}
+
 .espaco-saldo-prox {
     display:flex;
     flex-direction: column;
     padding: 20px;
-}
-
-.titulo-saldo-prox {
-    background-color: var(--secundary-color);    
-    height: 3rem;
-    width: 18rem;
-    font-size: 2rem;
-    text-align: center;
-    color: var(--white);
-    border-top-left-radius: 1.5rem;
-    border-top-right-radius: 1.5rem;
-}
-
-.saldo-prox {
-    background-color: var(--fundo-tabela);    
-    height: 4rem;
-    width: 18rem;
-    text-align: center;
-    border-bottom-left-radius: 1.5rem;
-    border-bottom-right-radius: 1.5rem;
 }
 
 .botoes-barra-direita button,
@@ -330,19 +324,116 @@
     background-color: red;
 }
 
+.botao-adicionar-despesa:hover {
+    background-color: rgb(142, 2, 2);
+    transition: 0.3s;
+}
+
 .botao-adicionar-receita {
     background-color: green;
 }
 
-
-
-
-
-
-
-#piechart {
-    width: 20rem; 
-    height: 10rem;
-    background-color: var(--primary-color);
+.botao-adicionar-receita:hover {
+    background-color: rgb(1, 69, 1);
+    transition: 0.3s;
 }
 
+.espaco_grafico {
+    display: flex;
+    width: 275px;
+    height: 275px;
+}
+
+#piechart {
+    width: 100%; /* Define a largura do gráfico para ocupar 100% do contêiner pai. */
+    max-width: 400px; /* Define a largura máxima do gráfico, ajuste conforme necessário. */
+    height: auto; /* A altura é definida automaticamente para manter a proporção. */
+    /* Outros estilos, como cores de fundo, bordas, etc. */
+}
+
+
+/*RESPONSIVIDADE*/
+
+@media (max-height: 720px) {
+    
+    .barra-lateral-esquerda {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        position: fixed;
+        background-color: var(--primary-color);
+        width: 20%;
+        height: 35.5rem;
+        border-top-right-radius: 3rem;
+        border-bottom-right-radius: 1.5rem;
+        align-items: center;
+        align-content: center;
+        text-align: center;
+      }
+
+      .tabela-spacing {
+        height: 1rem;
+    }
+
+  .titulo-sidebar-atual {
+    width: 15rem;
+    margin-top: 1rem;
+    background-color: var(--secundary-color);
+    border-top-right-radius: 1.5rem;
+    border-top-left-radius: 1.5rem;
+    color: var(--white);
+    font-size: 1.5rem;
+    padding: 0.1rem 0.4rem 0.1rem 0.4rem; /* superior | direita | inferior | esquerda */
+}
+
+    .espaco-tabela-proximos table,
+    .espaco-tabela-proximos table th,
+    .espaco-tabela-proximos table td {
+    background-color: var(--fundo-tabela);
+    color: black;
+    font-size: 0.9rem;
+    width: 15rem;
+    height: 0.5rem;
+    border-collapse: collapse;
+    border: 1px solid black;
+    
+}
+
+      .espaco-tabela-proximos{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: var(--white);
+        border-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+      }
+    
+      .barra-lateral-direita {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        position: fixed;
+        right: 0;
+        background-color: var(--primary-color);
+        width: 70%;
+        height: 35.5rem;
+        border-top-left-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem;
+      }
+
+      .espaco-este-mes {
+        max-height: 8em;
+        overflow-y: scroll;
+        display: flex; 
+        border-radius: 1.5rem;
+    }
+    
+    .esp {
+        max-height: 17rem;
+        overflow-y: scroll;
+    }
+
+}

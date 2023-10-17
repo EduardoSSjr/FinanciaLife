@@ -73,8 +73,9 @@ $dados_json = json_encode($dados_grafico);
         <div class="espaco-gastos-mensais-atual">
             <h3>Este Mês</h3> <!-- Título para a seção de gastos atuais -->
             
-            <canvas id="meuGrafico"></canvas>
-
+            <div class="espaco_grafico">
+            <canvas class="grafico" id="meuGrafico"></canvas>
+            </div>
         </div>
 
         <div class="tabela-spacing"></div> <!-- Espaço entre seções -->
@@ -228,32 +229,6 @@ $dados_json = json_encode($dados_grafico);
     
     </section>
     
-
-
-
-    <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Receitas',     10],
-          ['Despesas',      10],
-        ]);
-
-        var options = {
-          title: 'Este mês'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-    </script> -->
-    
     <script>
         // Use a variável $dados_json recuperada do PHP
         var data = {
@@ -277,7 +252,7 @@ $dados_json = json_encode($dados_grafico);
                     legend: {
                         labels: {
                             font: {
-                                size: 18, // Define o tamanho da fonte
+                                size: 16, // Define o tamanho da fonte
                             }
                         }
                     }

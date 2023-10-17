@@ -2,6 +2,7 @@
 :root {
     --primary-color: rgba(50,130,218,1);
     --secundary-color: rgba(76,64,134,1);
+    --dark-secundary-color: rgb(40, 27, 107);
     --fundo-tabela: rgba(246,250,228,1);
     --white: rgba(255,255,255,1);
   }
@@ -50,31 +51,63 @@ body {
 }
 
 
-/* RESPONSIVIDADE */
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  body {
+      font-size: 1.6rem; /* Reduz o tamanho da fonte */
+  }
 
-/* @media (min-width: 769px) {
-.barra-lateral-esquerda {
-    display: inline-block;
-    position: fixed;
-    background-color: var(--primary-color);
-    width: 20%;
-    height: 54.1rem;
-    border-top-right-radius: 3rem;
-    border-bottom-right-radius: 1.5rem;
-    align-items: center;
-    align-content: center;
-    text-align: center;
+  .container {
+      max-width: 90%; /* Reduz a largura do container principal */
+      padding: 10px; /* Espaçamento interno menor */
+  }
+
+  /* Ajustes para as barras laterais */
+  .barra-lateral-esquerda, .barra-lateral-direita {
+      width: 100%; /* Ocupam toda a largura na tela pequena */
+      border-radius: 0; /* Removendo bordas arredondadas */
+  }
+
+  /* Ajuste para a tabela de gastos deste mês na barra lateral direita */
+  .tabela-este-mes th, .tabela-este-mes td {
+      width: auto; /* Largura automática nas células da tabela */
+  }
+
+  /* Ajuste para o gráfico */
+  #meuGrafico {
+      width: 100%; /* Ocupa toda a largura disponível */
+      max-height: 250px; /* Altura máxima para evitar que fique muito grande */
+  }
 }
 
-.barra-lateral-direita {
-    display: inline-block;
-    position: fixed;
-    right: 0;
-    background-color: var(--primary-color);
-    width: 70%;
-    height: 54.1rem;
-    border-top-left-radius: 1.5rem;
-    border-bottom-left-radius: 1.5rem;
-    }
 
-} */
+/* Responsividade para telas maiores */
+@media (min-width: 1440px) {
+  body {
+      font-size: 2.4rem; /* Aumenta o tamanho da fonte para telas maiores */
+  }
+
+  .container {
+      max-width: 80%; /* Reduz a largura do container principal para evitar que ele fique muito largo em telas maiores */
+  }
+
+  /* Ajustes para as barras laterais */
+  .barra-lateral-esquerda, .barra-lateral-direita {
+      width: 15%; /* Reduz a largura das barras laterais para que elas ocupem menos espaço na tela maior */
+  }
+
+  .barra-lateral-direita {
+      width: 85%; /* Aumenta a largura da barra lateral direita para ocupar o espaço restante na tela */
+  }
+
+  /* Ajuste para a tabela de gastos deste mês na barra lateral direita */
+  .tabela-este-mes th, .tabela-este-mes td {
+      width: auto; /* Largura automática nas células da tabela */
+  }
+
+  /* Ajuste para o gráfico */
+  #meuGrafico {
+      width: 50%; /* Reduz o tamanho do gráfico para que ele não ocupe toda a largura da tela */
+      max-height: 350px; /* Altura máxima para evitar que fique muito alto */
+  }
+}
