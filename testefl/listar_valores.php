@@ -71,7 +71,7 @@ $dados_json = json_encode($dados_grafico);
         <h2 class="titulo-sidebar-esquerda">Gastos Mensais</h2> <!-- Título da barra lateral esquerda -->
 
         <div class="espaco-gastos-mensais-atual">
-            <h3>Este Mês</h3> <!-- Título para a seção de gastos atuais -->
+            <h3 class="este-mês-titulo">Este Mês</h3> <!-- Título para a seção de gastos atuais -->
             
             <div class="espaco_grafico">
             <canvas class="grafico" id="meuGrafico"></canvas>
@@ -79,25 +79,68 @@ $dados_json = json_encode($dados_grafico);
         </div>
 
         <div class="tabela-spacing"></div> <!-- Espaço entre seções -->
+            <!-- <table>
+                <h3 class="titulo-sidebar-atual">Próximo</h3> 
+                <tr>
+                    <td>Conteudo 01</td>
+                </tr>
+                <tr>
+                    <td>Conteudo 01</td>
+                </tr>
+                <tr>
+                    <td>Conteudo 01</td>
+                </tr>
+                <tr>
+                    <td>Conteudo 01</td>
+                </tr>
+            </table> -->
+            <?php 
+            $hoje = date("Y-m-d");
+            $sql_proximas_despesas = "SELECT id, gasto, desp_data, valor_despesa FROM despesas WHERE DATE(desp_data) >= '$hoje' ORDER BY desp_data ASC LIMIT 1";
+            $result_proximas_despesas = $conn->query($sql_proximas_despesas);
+            
+            $sql_proximas_receitas = "SELECT id, receber, rec_data, valor_receita FROM receitas WHERE DATE(rec_data) >= '$hoje' ORDER BY rec_data ASC LIMIT 1";
+            $result_proximas_receitas = $conn->query($sql_proximas_receitas);
 
-        <div class="espaco-tabela-proximos">
-            <table>
-                <h3 class="titulo-sidebar-atual">Próximo</h3> <!-- Título para a seção de próximos gastos -->
-                <!-- Linhas da tabela para listar valores -->
-                <tr>
-                    <td>Conteudo 01</td>
-                </tr>
-                <tr>
-                    <td>Conteudo 01</td>
-                </tr>
-                <tr>
-                    <td>Conteudo 01</td>
-                </tr>
-                <tr>
-                    <td>Conteudo 01</td>
-                </tr>
-            </table>
-        </div>
+            
+            echo '<div class="espaco-tabela-proximos">';
+            echo '<table>';
+            echo '<h3 class="titulo-sidebar-atual">Próximo</h3>';
+            echo '<tr>';
+            echo '<th style="background-color: var(--secundary-color); color: var(--white)">Título</th>';
+            echo '<th style="background-color: var(--secundary-color); color: var(--white)">Data</th>';
+            echo '<th style="background-color: var(--secundary-color); color: var(--white)">Valor</th>';
+            echo '<th style="background-color: var(--secundary-color); color: var(--white)">Editar</th>';
+            echo '</tr>';
+
+            // Loop para as próximas despesas
+            while ($row_despesas = $result_proximas_despesas->fetch_assoc()) {
+                $data_despesa = date("d/m", strtotime($row_despesas['desp_data']));
+
+                echo '<tr>';
+                echo '<td style="background-color: rgba(255, 0, 0, 0.9);">' . $row_despesas['gasto'] . '</td>';
+                echo '<td style="background-color: rgba(255, 0, 0, 0.9);">' . $data_despesa . '</td>';
+                echo '<td style="background-color: rgba(255, 0, 0, 0.9);">R$ ' . $row_despesas['valor_despesa'] . '</td>';
+                echo '<td style="background-color: rgba(255, 0, 0, 0.9);"><a class="texto_editar_despesa" style="color: black;" href="editar_despesa.php?id=' . $row_despesas['id'] . '">Editar</a></td>';
+                echo '</tr>';
+            }
+
+            // Loop para as próximas receitas
+            while ($row_receitas = $result_proximas_receitas->fetch_assoc()) {
+                $data_receita = date("d/m", strtotime($row_receitas['rec_data']));
+
+                echo '<tr>';
+                echo '<td style="background-color: rgba(75, 210, 49, 0.9);">' . $row_receitas['receber'] . '</td>';
+                echo '<td style="background-color: rgba(75, 210, 49, 0.9);">' . $data_receita . '</td>';
+                echo '<td style="background-color: rgba(75, 210, 49, 0.9);">R$ ' . $row_receitas['valor_receita'] . '</td>';
+                echo '<td style="background-color: rgba(75, 210, 49, 0.9);"><a class="texto_editar_receita" style="color: black;" href="editar_receita.php?id=' . $row_receitas['id'] . '">Editar</a></td>';
+                echo '</tr>';
+            }
+
+            echo '</table>';
+            echo '</div>';
+
+            ?>
     </aside>
 
     <!-- parte lateral direita -->
@@ -195,26 +238,30 @@ $dados_json = json_encode($dados_grafico);
                 echo '<tr class="titulo-tabela"><th>Tipo</th><th>Título</th><th>Data</th><th>Valor</th><th>Editar</th></tr>';
 
                 while ($linha = mysqli_fetch_assoc($resultado)) {
-                    $tipo = ucfirst($linha['tipo']); // Utilize ucfirst para capitalizar a primeira letra
+                    $tipo = ucfirst($linha['tipo']);
                     $titulo = $linha['titulo'];
-                    $data = $linha['data'];
+                    
+                    // Formate a data no padrão brasileiro
+                    $data = date('d/m/Y', strtotime($linha['data']));
+                    
                     $valor = $linha['valor'];
-
-                    // Agora, você pode definir a cor de fundo com base no tipo
                     $background_color = ($linha['tipo'] === 'despesa') ? 'rgba(255, 0, 0, 0.9)' : 'rgba(75, 210, 49, 0.9)';
-
+                
                     echo "<tr style='background-color: $background_color;'>";
                     echo "<td>$tipo</td>";
                     echo "<td>$titulo</td>";
                     echo "<td>$data</td>";
                     echo "<td>$valor</td>";
+                    
                     if ($linha['tipo'] === 'despesa') {
                         echo "<td><a class=\"texto_editar_despesa\" href='editar_despesa.php?id=" . $linha['id'] . "'>Editar</a></td>";
                     } elseif ($linha['tipo'] === 'receita') {
                         echo "<td><a class=\"texto_editar_receita\" href='editar_receita.php?id=" . $linha['id'] . "'>Editar</a></td>";
                     }
+                    
                     echo "</tr>";
                 }
+                
 
                 echo "</table>";
                 ?>

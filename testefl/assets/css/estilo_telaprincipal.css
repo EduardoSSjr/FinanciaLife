@@ -376,6 +376,16 @@
         height: 1rem;
     }
 
+    .este-mês-titulo {
+        font-size: 1.8rem;
+    }
+
+    .espaco_grafico {
+        display: flex;
+        width: 265px;
+        height: 265px;
+    }
+
   .titulo-sidebar-atual {
     width: 15rem;
     margin-top: 1rem;
@@ -383,7 +393,7 @@
     border-top-right-radius: 1.5rem;
     border-top-left-radius: 1.5rem;
     color: var(--white);
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     padding: 0.1rem 0.4rem 0.1rem 0.4rem; /* superior | direita | inferior | esquerda */
 }
 
@@ -394,7 +404,7 @@
     color: black;
     font-size: 0.9rem;
     width: 15rem;
-    height: 0.5rem;
+    height: 0.8rem;
     border-collapse: collapse;
     border: 1px solid black;
     
