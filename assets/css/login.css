@@ -1,6 +1,3 @@
-/* @import url('') */
-/*importar alguma possivel fonte que nos agrade*/
-
 * {
   margin: 0;
   padding: 0;
@@ -9,14 +6,14 @@
 }
 
 body {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.container {
+ .container {
   background-color: whitesmoke;
   padding: 6px;
   width: 350px;
@@ -31,12 +28,80 @@ body {
 }
 
 form {
-  position: relative;
+  position: absolute;
   margin-top: 80px;
+  transition: .5s;
   width: 300px;
   height: 400px;
 }
 
 .buttonsForm {
-  
+  margin-top: 40px;
+  position: relative;
+  border-radius: 30px;
+  box-shadow: 0 0 7px 0 blueviolet;
 } 
+
+.buttonsForm button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  position: relative;
+  padding: 10px 29px;
+}
+
+.btnColor {
+  position: absolute;
+  width: 108px;
+  height: 100%;
+  background: linear-gradient(to right, blueviolet, red);
+  border-radius: 30px;
+  transition: .2s;
+}
+
+input[type="text"], input[type="password"] {
+  border: none;
+  margin-top: 40px;
+  border-radius: 60px;
+  padding: 10px 0 8px 35px;
+  outline: none;
+  width: 100%;
+}
+
+button[type="submit"] {
+  background: blue;
+  color: white;
+  border-radius: 30px;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 8px 0 8px 15px;
+  font-size: 15px;
+  margin-top: 40px;
+  cursor: pointer;
+} 
+
+#divcheck {
+  margin: 10px 0 0 5px;
+  width: 80%;
+  font-size: 13px;
+}
+
+#login {
+  left: 25px;
+}
+
+i {
+  position: absolute;
+  left: 0;
+  padding: 8px 10px;
+}
+
+.iEmail {
+  top: 40px;
+}
+
+.iPassword {
+  top: 114px;
+}
+/* ///////////////////////////////////////////////// */

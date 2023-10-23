@@ -4,55 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
-    <link rel="stylesheet" href="stylelogin.css">
+       <title>Cadastro</title>
+    
+       <script ></script>
+    <link rel="stylesheet" href="assets/css/login.css">
     <script src="https://kit.fontawesome.com/cf6fa412bd.js"></script>
 </head>
 
 <body>
-<div id="container">
-    <div id="buttonsForm">
-        <div id="btnColor">
-                    <button class="cadastro'">Cadastro</button>
-                    <button class="login">Login</button>
-        </div>
+<div class="container">
+    <div class="buttonsForm">
+        <div class="btnColor"></div>
+        <a  href="cadastro.html"><button link="" id="openFormButton">Abrir Formulário</button></a>
+             
     </div>
-
-    <form id="signin">
-        <input type="text" placeholder="Email" required />
-        <i class="fas fa-envelope iEmail"></i>
-        <input type="password" placeholder="Password" required/>
-        <i class="fas fa-lock iPassword"></i>
-        <div id="divCheck">
-            <input type="checkbox" />
-            <span>Remember Password</span>
-        </div>
-        <button type="submit"> Login </button>
-    </form>
-
-    <form id="signin">
-        <input type="text" placeholder="Nome" required />
-
-        <input type="text" placeholder="Sobrenome" required />
-        
-        <input type="text" placeholder="Email" required />
-        <i class="fas fa-envelope iEmail"></i>
-
-        
-        <input type="text" placeholder="Confirme o Email" required />
-        <i class="fas fa-envelope iEmail2"></i>
-
-        <input type="password" placeholder="senha" required/>
-        <i class="fas fa-lock iPassword"></i>
-<!-- as classes I não estão funcionando como deveriam, analisar o src e a escrita do class -->
-        <input type="password" placeholder="Confirme a senha" required/>
-        <i class="fas fa-lock iPassword2"></i>
-        </div>
-        <button type="submit"> Cadastrar-se</button>
-    </form>
+            <form id="login">
+            <input type="text" id="validateEmail" placeholder="Email" required />
+            <i class="fas fa-envelope iEmail"></i>
+            <input type="password" id="validateEmail" placeholder="Password" required/>
+            <i class="fas fa-lock iPassword"></i>
+            <div id="divcheck">
+                <input type="checkbox" />
+                <span>Remember Password</span>
+            </div>
+            <button type="submit"> Login </button>
+        </form>
 </div>
 
-<script></script>
+<script src="assets/js/login.js">
+</script>
 </body>
     
 </html>
