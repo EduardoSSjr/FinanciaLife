@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
        <title>Cadastro</title>
     
-       <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
        <script ></script>
     <link rel="stylesheet" href="assets/css/login.css">
     <script src="https://kit.fontawesome.com/cf6fa412bd.js"></script>
@@ -16,15 +15,13 @@
 <div class="container">
     <div class="buttonsForm">
         <div class="btnColor"></div>
-                <button id="btnlogin">Login</button>
-                <button id="btncadastro">Cadastro</button>
-
+        <a  href="cadastro.html"><button link="" id="openFormButton">Abrir Formulário</button></a>
              
     </div>
             <form id="login">
-            <input type="text" placeholder="Email" required />
+            <input type="text" id="validateEmail" placeholder="Email" required />
             <i class="fas fa-envelope iEmail"></i>
-            <input type="password" placeholder="Password" required/>
+            <input type="password" id="validateEmail" placeholder="Password" required/>
             <i class="fas fa-lock iPassword"></i>
             <div id="divcheck">
                 <input type="checkbox" />
@@ -32,32 +29,9 @@
             </div>
             <button type="submit"> Login </button>
         </form>
-
-        <form id="cadastro">
-            <input type="text" placeholder="Nome" required />
-
-            <input type="text" placeholder="Sobrenome" required />
-            
-            <input type="text" placeholder="Email" required />
-            <i class="fas fa-envelope iEmail"></i>
-
-            
-            <input type="text" placeholder="Confirme o Email" required />
-            <i class="fas fa-envelope iEmail2"></i>
-
-            <input type="password" placeholder="senha" required/>
-            <i class="fas fa-lock iPassword"></i>
-
-            <input type="password" placeholder="Confirme a senha" required/>
-            <i class="fas fa-lock iPassword2"></i>
-            <button type="submit"> Cadastrar-se</button>
-            </div>
-        </form>
 </div>
 
-<script src="assets/js/cadastro.js">
-    import {ref} from 'vue'
-    const tab = ref("login")
+<script src="assets/js/login.js">
 </script>
 </body>
     

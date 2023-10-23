@@ -63,7 +63,7 @@ input[type="text"], input[type="password"] {
   border: none;
   margin-top: 40px;
   border-radius: 60px;
-  padding: 8px 0 8px 35px;
+  padding: 10px 0 8px 35px;
   outline: none;
   width: 100%;
 }
@@ -81,7 +81,7 @@ button[type="submit"] {
   cursor: pointer;
 } 
 
-.divcheck {
+#divcheck {
   margin: 10px 0 0 5px;
   width: 80%;
   font-size: 13px;
@@ -91,14 +91,10 @@ button[type="submit"] {
   left: 25px;
 }
 
-#cadastro {
-  left: -450px;
-}
-
 i {
   position: absolute;
   left: 0;
-  padding: 10px 10px;
+  padding: 8px 10px;
 }
 
 .iEmail {
@@ -108,7 +104,4 @@ i {
 .iPassword {
   top: 114px;
 }
-
-.iPassword2 {
-  top: 190px;
-}
+/* ///////////////////////////////////////////////// */
