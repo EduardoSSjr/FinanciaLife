@@ -96,10 +96,10 @@ $dados_json = json_encode($dados_grafico);
             </table> -->
             <?php 
             $hoje = date("Y-m-d");
-            $sql_proximas_despesas = "SELECT id, gasto, desp_data, valor_despesa FROM despesas WHERE DATE(desp_data) >= '$hoje' ORDER BY desp_data ASC LIMIT 1";
+            $sql_proximas_despesas = "SELECT id, gasto, desp_data, valor_despesa FROM despesas WHERE DATE(desp_data) >= '$hoje' ORDER BY desp_data ASC LIMIT 2";
             $result_proximas_despesas = $conn->query($sql_proximas_despesas);
             
-            $sql_proximas_receitas = "SELECT id, receber, rec_data, valor_receita FROM receitas WHERE DATE(rec_data) >= '$hoje' ORDER BY rec_data ASC LIMIT 1";
+            $sql_proximas_receitas = "SELECT id, receber, rec_data, valor_receita FROM receitas WHERE DATE(rec_data) >= '$hoje' ORDER BY rec_data ASC LIMIT 2";
             $result_proximas_receitas = $conn->query($sql_proximas_receitas);
 
             
