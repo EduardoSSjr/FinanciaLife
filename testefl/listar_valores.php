@@ -48,6 +48,10 @@ $dados_json = json_encode($dados_grafico);
     <link rel="stylesheet" href="assets/css/estilo_telaprincipal.css">
     <script src="https://kit.fontawesome.com/cf6fa412bd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400&display=swap" rel="stylesheet">
 </head>
 <body>
 
