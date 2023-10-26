@@ -17,7 +17,7 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    height: 2rem;
+    height: 50px;
     padding: 1.5rem;
     z-index: 1;
 }
@@ -30,6 +30,11 @@
     text-decoration: none;
     color: var(--white);
     border-radius: 1rem;
+}
+
+.logo img {
+    width: 65px;
+    height: 65px;
 }
 
 .menu a:hover {

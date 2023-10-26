@@ -60,7 +60,7 @@ $dados_json = json_encode($dados_grafico);
         <div class="menu">
             <div class="menu-left">
                 <a href="#">☰</a> <!-- Ícone para o menu (pode ser ativado com JavaScript) -->
-                <a href="#">Logo</a> <!-- Logotipo -->
+                <a class="logo" href="#"><img src="assets/imgs/logofl.png" alt="logo financialife"></a> <!-- Logotipo -->
             </div>
             <div class="menu-right">
                 <a class="menu-adc-part" href="#">+Adc. Participante</a> <!-- Link para adicionar participante -->
@@ -271,7 +271,7 @@ $dados_json = json_encode($dados_grafico);
                 ?>
         </div>
         <div class="botoes-adicionar">
-        <a class="botao-adicionar-despesa" href="adc_despesa.php">Adicionar nova Despesa+</a> <!-- Link para adicionar novo gasto -->
+        <a class="botao-adicionar-despesa" href="adc_despesa.php">Adicionar nova Despesa-</a> <!-- Link para adicionar novo gasto -->
         <a class="botao-adicionar-receita" href="adc_receita.php">Adicionar nova Receita+</a> <!-- Link para adicionar novo gasto -->
         <a class="botao-adicionar-receita" href="adc_saldoatual.php">Adicionar Saldo Atual</a> <!-- Link para adicionar novo gasto -->
         </div>
@@ -321,6 +321,4 @@ $dados_json = json_encode($dados_grafico);
     onclick="location.href='adc_despesa.php'">
 
      
-
-
 
