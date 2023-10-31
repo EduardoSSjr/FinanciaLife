@@ -83,21 +83,7 @@ $dados_json = json_encode($dados_grafico);
         </div>
 
         <div class="tabela-spacing"></div> <!-- Espaço entre seções -->
-            <!-- <table>
-                <h3 class="titulo-sidebar-atual">Próximo</h3> 
-                <tr>
-                    <td>Conteudo 01</td>
-                </tr>
-                <tr>
-                    <td>Conteudo 01</td>
-                </tr>
-                <tr>
-                    <td>Conteudo 01</td>
-                </tr>
-                <tr>
-                    <td>Conteudo 01</td>
-                </tr>
-            </table> -->
+
             <?php 
             $hoje = date("Y-m-d");
             $sql_proximas_despesas = "SELECT id, gasto, desp_data, valor_despesa FROM despesas WHERE DATE(desp_data) >= '$hoje' ORDER BY desp_data ASC LIMIT 2";
@@ -286,7 +272,7 @@ $dados_json = json_encode($dados_grafico);
             if ($row_verificar_saldo['total_registros'] > 0) {
             } else {
                 // Exibir o botão
-                echo '<a href="adc_saldoatual" class="botao-adicionar-saldoatual">Adicionar Saldo Atual</a>';
+                echo '<a href="adc_saldoatual.php" class="botao-adicionar-saldoatual">Adicionar Saldo Atual</a>';
             }
         ?>
 
