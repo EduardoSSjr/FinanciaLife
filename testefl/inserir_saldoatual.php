@@ -13,15 +13,13 @@ if (!$conn) {
 $sql = "INSERT INTO saldoatual (valor_saldoatual) VALUES ('$valor_saldoatual')";
 
 // Executar a consulta e verificar se foi bem-sucedida
-if (mysqli_query($conn, $sql)) {
-    echo "Inserido com sucesso";
+if ($conn->query($sql) === TRUE) {
+    // Redirecione para a página principal ou exiba uma mensagem de sucesso
+    header("Location: listar_valores.php");
 } else {
-    echo "Erro ao inserir: " . mysqli_error($conn);
+    // Exiba uma mensagem de erro em caso de falha na atualização
+    echo "Erro ao inserir saldo atual: " . $conn->error;
 }
-
 // Fechar a conexão com o banco de dados
 mysqli_close($conn);
 ?>
-
-<br>
-<input type="submit" value="Inserir saldoatual" onclick="location.href='listar_valores.php'">

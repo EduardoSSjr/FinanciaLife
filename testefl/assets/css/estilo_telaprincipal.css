@@ -32,6 +32,11 @@
     border-radius: 1rem;
 }
 
+.menu-left {
+    display: flex;
+    align-items: center;
+}
+
 .logo img {
     width: 65px;
     height: 65px;

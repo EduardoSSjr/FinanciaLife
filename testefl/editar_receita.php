@@ -46,6 +46,8 @@ if (isset($_GET['id'])) {
         <label for="valor">Valor:</label>
         <input type="text" name="valor" value="<?php echo $valor; ?>"><br>
         <input type="submit" value="Salvar Alterações">
+
+        <a href="excluir_receita.php?id=<?php echo $id; ?>" class="excluir-button">Excluir Receita</a>
     </form>
     </section>
 </body>

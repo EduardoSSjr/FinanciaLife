@@ -162,19 +162,19 @@ $dados_json = json_encode($dados_grafico);
                 <h3 class="saldo-atual">
                     R$ 
                     <?php 
-                    $sql = "SELECT valor_saldoatual FROM saldoatual WHERE id = 1"; // Altere o ID conforme necessário
+                    $sql = "SELECT valor_saldoatual FROM saldoatual"; // Altere o ID conforme necessário
                     $result = $conn->query($sql);
                     
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             $valor_saldoatual = $row["valor_saldoatual"];
+                            echo $valor_saldoatual;
                         }
                     } else {
-                        echo "Nenhum resultado encontrado.";
+                        echo "R$00,00";
                     }
                     ?>
 
-                <?php echo $valor_saldoatual; ?>
                     
                 </h3> <!-- Valor do saldo atual -->
             </div>
@@ -209,7 +209,7 @@ $dados_json = json_encode($dados_grafico);
                         // Calcula o saldo do próximo mês
                         $saldoProximoMes = ($saldoAtual + $totalReceitas) - $totalDespesas;
                         
-                        echo "R$ " . $saldoProximoMes . ".00" . "<br>";
+                        echo "R$ " . $saldoProximoMes . "<br>";
                     } else {
                         echo "Erro na consulta SQL.";
                 }
@@ -273,7 +273,23 @@ $dados_json = json_encode($dados_grafico);
         <div class="botoes-adicionar">
         <a class="botao-adicionar-despesa" href="adc_despesa.php">Adicionar nova Despesa-</a> <!-- Link para adicionar novo gasto -->
         <a class="botao-adicionar-receita" href="adc_receita.php">Adicionar nova Receita+</a> <!-- Link para adicionar novo gasto -->
-        <a class="botao-adicionar-receita" href="adc_saldoatual.php">Adicionar Saldo Atual</a> <!-- Link para adicionar novo gasto -->
+
+        <?php
+            include 'conexao.php'; // Inclua o arquivo de conexão com o banco de dados
+
+            // Consulta SQL para verificar se há um valor na tabela 'saldoatual'
+            $sql_verificar_saldo = "SELECT COUNT(*) as total_registros FROM saldoatual";
+            $result_verificar_saldo = $conn->query($sql_verificar_saldo);
+            $row_verificar_saldo = $result_verificar_saldo->fetch_assoc();
+
+            // Verifique se há registros na tabela 'saldoatual'
+            if ($row_verificar_saldo['total_registros'] > 0) {
+            } else {
+                // Exibir o botão
+                echo '<a href="adc_saldoatual" class="botao-adicionar-saldoatual">Adicionar Saldo Atual</a>';
+            }
+        ?>
+
         </div>
         </div>
 
