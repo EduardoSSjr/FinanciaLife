@@ -6,16 +6,16 @@ closeFormButton.addEventListener('click', () => {
 const form = document.getElementById('myForm');
 form.addEventListener('submit', (event) => {
     event.preventDefault();
-    const nome = document.getElementById('nome').value;
+    const nome = document.getElementById('signup_user_input').value;
 
 
-    const email = document.getElementById('email').value;
+    const email = document.getElementById('signup_email_input').value;
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     const confirmEmail = document.getElementById('confirm-email').value;
 
 
-    const senha = document.getElementById('senha').value;
+    const senha = document.getElementById('signup_password_input').value;
     const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     const confirmSenha = document.getElementById('confirm-senha').value;

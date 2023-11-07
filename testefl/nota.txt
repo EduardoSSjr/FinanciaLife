@@ -1,0 +1,16 @@
+nome da tabela: fl_user
+
+CREATE TABLE fl_user {
+    USER_ID  int(4) AUTO_INCREMENT PRIMARY KEY,
+    USER_NAME VARCHAR (50) NOT NULL,
+    USER_EMAIL VARCHAR (30) NOT NULL,
+    USER_PASSWORD VARCHAR (20) NOT NULL
+    }
+
+
+CREATE TABLE receitas (
+    id int(4) AUTO_INCREMENT PRIMARY KEY,
+    receber varchar(30) NOT NULL,
+    rec_data date NOT NULL,
+    valor_receita DECIMAL(10,2) NOT NULL
+);
