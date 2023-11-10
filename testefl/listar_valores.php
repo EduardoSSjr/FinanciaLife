@@ -1,4 +1,3 @@
-
 <?php
 include 'conexao.php'; // Inclua o arquivo de conexão com o banco de dados
 
@@ -46,6 +45,8 @@ $dados_json = json_encode($dados_grafico);
     <title>FinanciaLife</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/estilo_telaprincipal.css">
+    <link rel="stylesheet" href="assets/css/estilo_adicionar.css">
+ 
     <script src="https://kit.fontawesome.com/cf6fa412bd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
@@ -257,8 +258,8 @@ $dados_json = json_encode($dados_grafico);
                 ?>
         </div>
         <div class="botoes-adicionar">
-        <a class="botao-adicionar-despesa" href="adc_despesa.php">Adicionar nova Despesa-</a> <!-- Link para adicionar novo gasto -->
-        <a class="botao-adicionar-receita" href="adc_receita.php">Adicionar nova Receita+</a> <!-- Link para adicionar novo gasto -->
+        <a class="botao-adicionar-despesa user_view btn btn-sm btn-outline-primary">Adicionar nova Despesa</a>
+        <a class="botao-adicionar-receita" href="adc_receita.php">Adicionar nova Receita+</a>
 
         <?php
             include 'conexao.php'; // Inclua o arquivo de conexão com o banco de dados
@@ -281,6 +282,51 @@ $dados_json = json_encode($dados_grafico);
 
     
     </section>
+        
+    <div class="back_screen hidden"></div>
+    <modal class="userView_modal m_start hidden">
+                <div class="m_wrap">
+                    <section class="m_head">
+                        <span class="m_title"><span>Inserir Despesa</span></span>
+                        <i class="m_close m_userView_close fa-regular fa-circle-xmark fa-xl">X</i>
+                    </section>
+                        
+                    <section class="container">
+                    <form class="despesa" action="inserir_despesa.php" method="POST">
+                        <label for="gasto">Despesa:</label>
+                        <input type="text" id="gasto" name="gasto">
+
+                        <label for="desp_data">Data:</label>
+                        <input type="date" id="desp_data" name="desp_data">
+
+                        <label for="valor_despesa">Valor:</label>
+                        <input type="number" id="valor_despesa" name="valor_despesa">
+
+                        <button type="submit">Enviar</button>
+                    </form>
+                </section>    
+
+                </div>
+            </modal>
+            <script>
+                            
+                const back_screen = document.querySelector(".back_screen");
+                const userView = document.querySelectorAll(".user_view");
+                const userView_modal = document.querySelector(".userView_modal");
+                const userView_close = document.querySelector(".m_userView_close");
+
+                userView.forEach(button => {
+                    button.addEventListener("click", () => {
+                        userView_modal.classList.toggle("hidden");
+                        back_screen.classList.toggle("hidden");
+                    });
+                });
+
+                userView_close.addEventListener("click", () => {
+                    userView_modal.classList.toggle("hidden");
+                    back_screen.classList.toggle("hidden");
+                });
+            </script>
     
     <script>
         // Use a variável $dados_json recuperada do PHP
