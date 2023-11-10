@@ -259,7 +259,7 @@ $dados_json = json_encode($dados_grafico);
         </div>
         <div class="botoes-adicionar">
         <a class="botao-adicionar-despesa user_view btn btn-sm btn-outline-primary">Adicionar nova Despesa</a>
-        <a class="botao-adicionar-receita" href="adc_receita.php">Adicionar nova Receita+</a>
+        <a class="botao-adicionar-receita receita_ver btn btn-sm btn-outline-primary">Adicionar nova Receita+</a>
 
         <?php
             include 'conexao.php'; // Inclua o arquivo de conexão com o banco de dados
@@ -308,12 +308,43 @@ $dados_json = json_encode($dados_grafico);
 
                 </div>
             </modal>
+
+            <modal class="receita_modal m_start hidden">
+                <div class="m_wrap">
+                    <section class="m_head">
+                        <span class="m_title"><span>Inserir Receita</span></span>
+                        <i class="m_close receitaVer_close fa-regular fa-circle-xmark fa-xl">X</i>
+                        
+                        <section class="container">
+                        <form class="receita" action="inserir_receita.php" method="POST">
+                            <label for="receber">Receita:</label>
+                            <input type="text" id="receber" name="receber">
+
+                            <label for="rec_data">Data:</label>
+                            <input type="date" id="rec_data" name="rec_data">
+
+                            <label for="valor_receita">Valor:</label>
+                            <input type="number" id="valor_receita" name="valor_receita">
+
+                            <button type="submit">Enviar</button>
+                        </form>
+                    </section>    
+
+                </div>
+            </modal>
             <script>
                             
                 const back_screen = document.querySelector(".back_screen");
+                
                 const userView = document.querySelectorAll(".user_view");
                 const userView_modal = document.querySelector(".userView_modal");
                 const userView_close = document.querySelector(".m_userView_close");
+
+                const receitaModal = document.querySelector(".receita_modal")
+                const receitaVer = document.querySelectorAll(".receita_ver");
+                const receitaVer_close = document.querySelector(".receitaVer_close");
+
+
 
                 userView.forEach(button => {
                     button.addEventListener("click", () => {
@@ -321,6 +352,19 @@ $dados_json = json_encode($dados_grafico);
                         back_screen.classList.toggle("hidden");
                     });
                 });
+
+                receitaVer.forEach(button => {
+                    button.addEventListener("click", () => {
+                        receitaModal.classList.toggle("hidden");
+                        back_screen.classList.toggle("hidden");
+                    });
+                });
+
+                receitaVer_close.addEventListener("click", () => {
+                    receitaModal.classList.toggle("hidden");
+                    back_screen.classList.toggle("hidden");
+                });
+
 
                 userView_close.addEventListener("click", () => {
                     userView_modal.classList.toggle("hidden");
