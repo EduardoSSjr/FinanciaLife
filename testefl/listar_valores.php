@@ -46,6 +46,7 @@ $dados_json = json_encode($dados_grafico);
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/estilo_telaprincipal.css">
     <link rel="stylesheet" href="assets/css/estilo_adicionar.css">
+    <link rel="stylesheet" href="assets/css/modais.css">
  
     <script src="https://kit.fontawesome.com/cf6fa412bd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
@@ -172,35 +173,36 @@ $dados_json = json_encode($dados_grafico);
 
                 <h3 class="saldo-prox">
                 <?php
-                    // Suponha que você já tem uma conexão ao banco de dados $conn
+                // Suponha que você já tem uma conexão ao banco de dados $conn
 
-                    $mes_atual = date("Y-m");
-                    // Execute a consulta SQL para obter os valores
-                    $queryReceitas = "SELECT SUM(valor_receita) as total_receitas FROM receitas WHERE DATE_FORMAT(rec_data, '%Y-%m') = '$mes_atual'";
-                    $queryDespesas = "SELECT SUM(valor_despesa) as total_despesas FROM despesas WHERE DATE_FORMAT(desp_data, '%Y-%m') = '$mes_atual'";
-                    $querySaldoAtual = "SELECT valor_saldoatual FROM saldoatual";
+                $mes_atual = date("Y-m");
+                // Execute a consulta SQL para obter os valores
+                $queryReceitas = "SELECT SUM(valor_receita) as total_receitas FROM receitas WHERE DATE_FORMAT(rec_data, '%Y-%m') = '$mes_atual'";
+                $queryDespesas = "SELECT SUM(valor_despesa) as total_despesas FROM despesas WHERE DATE_FORMAT(desp_data, '%Y-%m') = '$mes_atual'";
+                $querySaldoAtual = "SELECT valor_saldoatual FROM saldoatual";
 
-                    $resultReceitas = $conn->query($queryReceitas);
-                    $resultDespesas = $conn->query($queryDespesas);
-                    $resultSaldoAtual = $conn->query($querySaldoAtual);
+                $resultReceitas = $conn->query($queryReceitas);
+                $resultDespesas = $conn->query($queryDespesas);
+                $resultSaldoAtual = $conn->query($querySaldoAtual);
 
-                    if ($resultReceitas && $resultDespesas && $resultSaldoAtual) {
-                        $rowReceitas = $resultReceitas->fetch_assoc();
-                        $rowDespesas = $resultDespesas->fetch_assoc();
-                        $rowSaldoAtual = $resultSaldoAtual->fetch_assoc();
-                        
-                        $totalReceitas = $rowReceitas['total_receitas'];
-                        $totalDespesas = $rowDespesas['total_despesas'];
-                        $saldoAtual = $rowSaldoAtual['valor_saldoatual'];
-                        
-                        // Calcula o saldo do próximo mês
-                        $saldoProximoMes = ($saldoAtual + $totalReceitas) - $totalDespesas;
-                        
-                        echo "R$ " . $saldoProximoMes . "<br>";
-                    } else {
-                        echo "Erro na consulta SQL.";
+                if ($resultReceitas && $resultDespesas && $resultSaldoAtual) {
+                    $rowReceitas = $resultReceitas->fetch_assoc();
+                    $rowDespesas = $resultDespesas->fetch_assoc();
+                    $rowSaldoAtual = $resultSaldoAtual->fetch_assoc();
+
+                    $totalReceitas = $rowReceitas['total_receitas'] ?? 0;
+                    $totalDespesas = $rowDespesas['total_despesas'] ?? 0;
+                    $saldoAtual = $rowSaldoAtual['valor_saldoatual'] ?? 0;
+
+                    // Calcula o saldo do próximo mês
+                    $saldoProximoMes = ($saldoAtual + $totalReceitas) - $totalDespesas;
+
+                    echo "R$ " . number_format($saldoProximoMes, 2, ',', '.') . "<br>";
+                } else {
+                    echo "Erro na consulta SQL.";
                 }
                 ?>
+
 
 
                 </h3> <!-- Valor do saldo atual -->
@@ -273,7 +275,7 @@ $dados_json = json_encode($dados_grafico);
             if ($row_verificar_saldo['total_registros'] > 0) {
             } else {
                 // Exibir o botão
-                echo '<a href="adc_saldoatual.php" class="botao-adicionar-saldoatual">Adicionar Saldo Atual</a>';
+                echo '<a class="botao-adicionar-saldo-atual saldo_ver btn btn-sm btn-outline-primary">Adicionar Saldo Atual</a>';
             }
         ?>
 
@@ -283,8 +285,16 @@ $dados_json = json_encode($dados_grafico);
     
     </section>
         
+<!--        
+███╗   ███╗ ██████╗ ██████╗  █████╗ ██╗███████╗
+████╗ ████║██╔═══██╗██╔══██╗██╔══██╗██║██╔════╝
+██╔████╔██║██║   ██║██║  ██║███████║██║███████╗
+██║╚██╔╝██║██║   ██║██║  ██║██╔══██║██║╚════██║
+██║ ╚═╝ ██║╚██████╔╝██████╔╝██║  ██║██║███████║
+╚═╝     ╚═╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚══════╝
+-->
     <div class="back_screen hidden"></div>
-    <modal class="userView_modal m_start hidden">
+    <modal class="despesaVer m_start hidden">
                 <div class="m_wrap">
                     <section class="m_head">
                         <span class="m_title"><span>Inserir Despesa</span></span>
@@ -312,10 +322,11 @@ $dados_json = json_encode($dados_grafico);
             <modal class="receita_modal m_start hidden">
                 <div class="m_wrap">
                     <section class="m_head">
-                        <span class="m_title"><span>Inserir Receita</span></span>
+                        <span class="m_title"><span>Inserir Receitas</span></span>
                         <i class="m_close receitaVer_close fa-regular fa-circle-xmark fa-xl">X</i>
+                    </section>
                         
-                        <section class="container">
+                    <section class="container">
                         <form class="receita" action="inserir_receita.php" method="POST">
                             <label for="receber">Receita:</label>
                             <input type="text" id="receber" name="receber">
@@ -328,29 +339,67 @@ $dados_json = json_encode($dados_grafico);
 
                             <button type="submit">Enviar</button>
                         </form>
-                    </section>    
+                    </section>
 
                 </div>
             </modal>
+
+            <modal class="saldo_modal m_start hidden">
+                <div class="m_wrap">
+                    <section class="m_head">
+                        <span class="m_title"><span>Inserir Saldo Atual</span></span>
+                        <i class="m_close saldoVer_close fa-regular fa-circle-xmark fa-xl">X</i>
+                    </section>
+                        
+                    <section class="container">
+                    <form class="saldoatual" action="inserir_saldoatual.php" method="POST">
+
+                    <label for="valor_saldoatual">Saldo Atual:</label>
+                        <input type="number" id="valor_saldoatual" name="valor_saldoatual">
+
+                        <button type="submit">Enviar</button>
+                    </form>
+                    </section>
+
+                </div>
+            </modal>
+
+<!--
+     ██╗███████╗
+     ██║██╔════╝
+     ██║███████╗
+██   ██║╚════██║
+╚█████╔╝███████║
+ ╚════╝ ╚══════╝
+-->  
             <script>
                             
                 const back_screen = document.querySelector(".back_screen");
                 
                 const userView = document.querySelectorAll(".user_view");
-                const userView_modal = document.querySelector(".userView_modal");
+                const despesaVer = document.querySelector(".despesaVer");
                 const userView_close = document.querySelector(".m_userView_close");
 
                 const receitaModal = document.querySelector(".receita_modal")
                 const receitaVer = document.querySelectorAll(".receita_ver");
                 const receitaVer_close = document.querySelector(".receitaVer_close");
 
+                const saldoModal = document.querySelector(".saldo_modal")
+                const saldoVer = document.querySelectorAll(".saldo_ver");
+                const saldoVer_close = document.querySelector(".saldoVer_close");
+
 
 
                 userView.forEach(button => {
                     button.addEventListener("click", () => {
-                        userView_modal.classList.toggle("hidden");
+                        despesaVer.classList.toggle("hidden");
                         back_screen.classList.toggle("hidden");
                     });
+                });
+
+                userView_close.addEventListener("click", () => {
+                    despesaVer.classList.toggle("hidden");
+                    back_screen.classList.toggle("hidden");
                 });
 
                 receitaVer.forEach(button => {
@@ -365,9 +414,15 @@ $dados_json = json_encode($dados_grafico);
                     back_screen.classList.toggle("hidden");
                 });
 
+                saldoVer.forEach(button => {
+                    button.addEventListener("click", () => {
+                        saldoModal.classList.toggle("hidden");
+                        back_screen.classList.toggle("hidden");
+                    });
+                });
 
-                userView_close.addEventListener("click", () => {
-                    userView_modal.classList.toggle("hidden");
+                saldoVer_close.addEventListener("click", () => {
+                    saldoModal.classList.toggle("hidden");
                     back_screen.classList.toggle("hidden");
                 });
             </script>
