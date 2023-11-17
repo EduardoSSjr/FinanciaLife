@@ -6,19 +6,19 @@ closeFormButton.addEventListener('click', () => {
 const form = document.getElementById('myForm');
 form.addEventListener('submit', (event) => {
     event.preventDefault();
-    const nome = document.getElementById('signup_user_input').value;
+    const nome = document.getElementById('cadastro_nome').value;
 
 
-    const email = document.getElementById('signup_email_input').value;
+    const email = document.getElementById('cadastro_email').value;
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-    const confirmEmail = document.getElementById('confirm-email').value;
+    const confirmEmail = document.getElementById('confirmar_email').value;
 
 
-    const senha = document.getElementById('signup_password_input').value;
+    const senha = document.getElementById('cadastro_senha').value;
     const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-    const confirmSenha = document.getElementById('confirm-senha').value;
+    const confirmSenha = document.getElementById('confirmar_senha').value;
 
     // Aqui você pode adicionar a lógica para processar os dados do formulário
 
