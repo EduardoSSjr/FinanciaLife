@@ -218,7 +218,7 @@
 .titulo-saldo-prox {
     background-color: var(--secundary-color);    
     height: 3rem;
-    width: 16rem;
+    width: 17rem;
     font-size: 2rem;
     text-align: center;
     color: var(--white);
@@ -230,7 +230,7 @@
 .saldo-prox {
     background-color: var(--fundo-tabela);    
     height: 4rem;
-    width: 16rem;
+    width: 17rem;
     text-align: center;
     border-bottom-left-radius: 1.5rem;
     border-bottom-right-radius: 1.5rem;

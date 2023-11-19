@@ -3,7 +3,7 @@ include 'conexao.php'; // Inclua o arquivo de conexão com o banco de dados
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $novo_saldo = $_POST['novo_saldo'];
-    $sql = "UPDATE saldoatual SET valor_saldoatual = $novo_saldo WHERE id = 1"; // Atualize o saldo atual com base no ID
+    $sql = "UPDATE saldoatual SET valor_saldoatual = $novo_saldo"; // Atualize o saldo atual com base no ID
 
     if ($conn->query($sql) === TRUE) {
         echo "Saldo atual atualizado com sucesso!";

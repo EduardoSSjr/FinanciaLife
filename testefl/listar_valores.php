@@ -113,7 +113,7 @@ $dados_json = json_encode($dados_grafico);
                 echo '<td style="background-color: rgba(255, 0, 0, 0.9);">' . $row_despesas['gasto'] . '</td>';
                 echo '<td style="background-color: rgba(255, 0, 0, 0.9);">' . $data_despesa . '</td>';
                 echo '<td style="background-color: rgba(255, 0, 0, 0.9);">R$ ' . $row_despesas['valor_despesa'] . '</td>';
-                echo '<td style="background-color: rgba(255, 0, 0, 0.9);"><a class="texto_editar_despesa" style="color: black;" href="editar_despesa.php?id=' . $row_despesas['id'] . '">Editar</a></td>';
+                echo '<td style="background-color: rgba(255, 0, 0, 0.9);"><a class="texto_editar_despesa editadesp_ver" style="color: black;" ?id=' . $row_despesas['id'] . '">Editar</a></td>';
                 echo '</tr>';
             }
 
@@ -125,7 +125,7 @@ $dados_json = json_encode($dados_grafico);
                 echo '<td style="background-color: rgba(75, 210, 49, 0.9);">' . $row_receitas['receber'] . '</td>';
                 echo '<td style="background-color: rgba(75, 210, 49, 0.9);">' . $data_receita . '</td>';
                 echo '<td style="background-color: rgba(75, 210, 49, 0.9);">R$ ' . $row_receitas['valor_receita'] . '</td>';
-                echo '<td style="background-color: rgba(75, 210, 49, 0.9);"><a class="texto_editar_receita" style="color: black;" href="editar_receita.php?id=' . $row_receitas['id'] . '">Editar</a></td>';
+                echo '<td style="background-color: rgba(75, 210, 49, 0.9);"><a class="texto_editar_receita editarec_ver" style="color: black;" ?id=' . $row_receitas['id'] . '">Editar</a></td>';
                 echo '</tr>';
             }
 
@@ -156,7 +156,7 @@ $dados_json = json_encode($dados_grafico);
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             $valor_saldoatual = $row["valor_saldoatual"];
-                            echo $valor_saldoatual;
+                            echo number_format($valor_saldoatual, 2, ',', '.') . "<br>";
                         }
                     } else {
                         echo "R$00,00";
@@ -166,7 +166,7 @@ $dados_json = json_encode($dados_grafico);
                     
                 </h3> <!-- Valor do saldo atual -->
             </div>
-            <a class="botao_editar_saldoatual" href="atualizar_saldo.php">Editar</a>
+            <a class="botao_editar_saldoatual editasaldo_ver">Editar</a>
 
             <div class="espaco-saldo-prox">
                 <h2 class="titulo-saldo-prox">Saldo Prox. Mês</h2> <!-- Título para o saldo atual -->
@@ -247,9 +247,9 @@ $dados_json = json_encode($dados_grafico);
                     echo "<td>$valor</td>";
                     
                     if ($linha['tipo'] === 'despesa') {
-                        echo "<td><a class=\"texto_editar_despesa\" href='editar_despesa.php?id=" . $linha['id'] . "'>Editar</a></td>";
+                        echo "<td><a class=\"texto_editar_despesa editadesp_ver\" ?id=" . $linha['id'] . "'>Editar</a></td>";
                     } elseif ($linha['tipo'] === 'receita') {
-                        echo "<td><a class=\"texto_editar_receita\" href='editar_receita.php?id=" . $linha['id'] . "'>Editar</a></td>";
+                        echo "<td><a class=\"texto_editar_receita editarec_ver\" ?id=" . $linha['id'] . "'>Editar</a></td>";
                     }
                     
                     echo "</tr>";
@@ -319,6 +319,7 @@ $dados_json = json_encode($dados_grafico);
                 </div>
             </modal>
 
+
             <modal class="receita_modal m_start hidden">
                 <div class="m_wrap">
                     <section class="m_head">
@@ -344,6 +345,7 @@ $dados_json = json_encode($dados_grafico);
                 </div>
             </modal>
 
+
             <modal class="saldo_modal m_start hidden">
                 <div class="m_wrap">
                     <section class="m_head">
@@ -363,6 +365,131 @@ $dados_json = json_encode($dados_grafico);
 
                 </div>
             </modal>
+
+
+            <modal class="editadesp_modal m_start hidden">
+            <?php
+                include 'conexao.php';
+
+                if (isset($_GET['id'])) {
+                    $id = $_GET['id'];
+
+                    // Execute uma consulta SQL para obter os detalhes da despesa com base no ID
+                    $sql = "SELECT * FROM despesas WHERE id = $id";
+                    $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $tipo = 'despesa';
+                        $titulo = $row['gasto'];
+                        $data = $row['desp_data'];
+                        $valor = $row['valor_despesa'];
+                } else {
+                        // Redirecione ou mostre uma mensagem de erro caso a despesa não seja encontrada
+                    }
+                } else {
+                    // Redirecione ou mostre uma mensagem de erro se o parâmetro 'id' não estiver presente na URL
+                }
+            ?>
+
+                <div class="m_wrap">
+                    <section class="m_head">
+                        <span class="m_title"><span>Editar Despesa</span></span>
+                        <i class="m_close editadespVer_close fa-regular fa-circle-xmark fa-xl">X</i>
+                    </section>
+                        
+                    <section class="container-editar">
+                    <h1>Editar Despesa</h1>
+                    <form action="atualizar_despesa.php" class="form-editar" method="post">
+                        <input type="hidden" name="id" value="<?php echo $id; ?>"> <!-- Inclua o ID como um campo oculto -->
+                        <label for="titulo">Título:</label>
+                        <input type="text" name="titulo" value="<?php echo $titulo; ?>"><br>
+                        <label for="data">Data:</label>
+                        <input type="date" name="data" value="<?php echo $data; ?>"><br>
+                        <label for="valor">Valor:</label>
+                        <input type="text" name="valor" value="<?php echo $valor; ?>"><br>
+                        <button type="submit">Atualizar Despesa</button>
+
+                        <a href="excluir_despesa.php?id=<?php echo $id; ?>" class="excluir-button">Excluir Despesa</a>
+                    </form>
+                    </section>
+
+                </div>
+            </modal>
+
+
+            <modal class="editarec_modal m_start hidden">
+            <?php
+            include 'conexao.php';
+
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+
+                // Execute uma consulta SQL para obter os detalhes da receita com base no ID
+                $sql = "SELECT * FROM receitas WHERE id = $id";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $tipo = 'receita';
+                    $titulo = $row['receber'];
+                    $data = $row['rec_data'];
+                    $valor = $row['valor_receita'];
+                } else {
+                    // Redirecione ou mostre uma mensagem de erro caso a receita não seja encontrada
+                }
+            } else {
+                // Redirecione ou mostre uma mensagem de erro se o parâmetro 'id' não estiver presente na URL
+            }
+            ?>
+
+                <div class="m_wrap">
+                    <section class="m_head">
+                        <span class="m_title"><span>Editar Receita</span></span>
+                        <i class="m_close editarecVer_close fa-regular fa-circle-xmark fa-xl">X</i>
+                    </section>
+                        
+                    <section class="container-editar">
+                    <h1>Editar Receita</h1>
+                    <form action="atualizar_receita.php" class="form-editar" method="post">
+                        <input type="hidden" name="id" value="<?php echo $id; ?>"> <!-- Inclua o ID como um campo oculto -->
+                        <label for="titulo">Título:</label>
+                        <input type"text" name="titulo" value="<?php echo $titulo; ?>"><br>
+                        <label for="data">Data:</label>
+                        <input type="date" name="data" value="<?php echo $data; ?>"><br>
+                        <label for="valor">Valor:</label>
+                        <input type="text" name="valor" value="<?php echo $valor; ?>"><br>
+                        <button type="submit">Atualizar Receita</button>
+
+                        <a href="excluir_receita.php?id=<?php echo $id; ?>" class="excluir-button">Excluir Receita</a>
+                    </form>
+                    </section>
+
+                </div>
+            </modal>
+
+
+            <modal class="editasaldo_modal m_start hidden">
+
+                <div class="m_wrap">
+                    <section class="m_head">
+                        <span class="m_title"><span>Editar Saldo Atual</span></span>
+                        <i class="m_close editasaldoVer_close fa-regular fa-circle-xmark fa-xl">X</i>
+                    </section>
+                     
+                    <section class="container">
+                    <h1>Atualizar Saldo</h1>
+                    <form action="inserir_novosaldo.php" method="post">
+                    <label for="novo_saldo">Novo Saldo:</label>
+                    <input typ5e="text" id="novo_saldo" name="novo_saldo">
+                    <button type="submit">Atualizar Saldo</button>
+                    </form>
+                    </section>
+
+                </div>
+            </modal>
+
+
 
 <!--
      ██╗███████╗
@@ -387,6 +514,20 @@ $dados_json = json_encode($dados_grafico);
                 const saldoModal = document.querySelector(".saldo_modal")
                 const saldoVer = document.querySelectorAll(".saldo_ver");
                 const saldoVer_close = document.querySelector(".saldoVer_close");
+                
+                const editadespModal = document.querySelector(".editadesp_modal")
+                const editadespVer = document.querySelectorAll(".editadesp_ver");
+                const editadespVer_close = document.querySelector(".editadespVer_close");
+
+                const editarecModal = document.querySelector(".editarec_modal")
+                const editarecVer = document.querySelectorAll(".editarec_ver");
+                const editarecVer_close = document.querySelector(".editarecVer_close");
+
+                const editasaldoModal = document.querySelector(".editasaldo_modal")
+                const editasaldoVer = document.querySelectorAll(".editasaldo_ver");
+                const editasaldoVer_close = document.querySelector(".editasaldoVer_close");
+
+
 
 
 
@@ -402,6 +543,7 @@ $dados_json = json_encode($dados_grafico);
                     back_screen.classList.toggle("hidden");
                 });
 
+
                 receitaVer.forEach(button => {
                     button.addEventListener("click", () => {
                         receitaModal.classList.toggle("hidden");
@@ -414,6 +556,7 @@ $dados_json = json_encode($dados_grafico);
                     back_screen.classList.toggle("hidden");
                 });
 
+
                 saldoVer.forEach(button => {
                     button.addEventListener("click", () => {
                         saldoModal.classList.toggle("hidden");
@@ -423,6 +566,45 @@ $dados_json = json_encode($dados_grafico);
 
                 saldoVer_close.addEventListener("click", () => {
                     saldoModal.classList.toggle("hidden");
+                    back_screen.classList.toggle("hidden");
+                });
+
+
+                editadespVer.forEach(button => {
+                    button.addEventListener("click", () => {
+                        editadespModal.classList.toggle("hidden");
+                        back_screen.classList.toggle("hidden");
+                    });
+                });
+
+                editadespVer_close.addEventListener("click", () => {
+                    editadespModal.classList.toggle("hidden");
+                    back_screen.classList.toggle("hidden");
+                });
+
+
+                editarecVer.forEach(button => {
+                    button.addEventListener("click", () => {
+                        editarecModal.classList.toggle("hidden");
+                        back_screen.classList.toggle("hidden");
+                    });
+                });
+
+                editarecVer_close.addEventListener("click", () => {
+                    editarecModal.classList.toggle("hidden");
+                    back_screen.classList.toggle("hidden");
+                });
+
+
+                editasaldoVer.forEach(button => {
+                    button.addEventListener("click", () => {
+                        editasaldoModal.classList.toggle("hidden");
+                        back_screen.classList.toggle("hidden");
+                    });
+                });
+
+                editasaldoVer_close.addEventListener("click", () => {
+                    editasaldoModal.classList.toggle("hidden");
                     back_screen.classList.toggle("hidden");
                 });
             </script>

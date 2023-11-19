@@ -18,7 +18,53 @@
     align-items: center;
     align-self: center;
   }
+
+  .container-editar {
+    display: flex;
+    flex-direction: column;
+    height: 590px;
+    max-width: 640px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    align-items: center;
+    align-self: center;
+  }
   
+  .form-editar input, .form-editar label {
+    display: block;
+    width: 100%;
+    margin-bottom: 0px;
+    font-size: 24px;
+  }
+
+  .form-editar input {
+    height: 30px;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  .form-editar input:focus {
+    outline: 1px solid var(--primary-color);
+  }
+
+  .form-editar button {
+    border: none;
+    background: var(--primary-color);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    height: 30px;
+    cursor: pointer;
+    margin-top: 5px;
+  }
+
+  .excluir-button {
+    font-size: 20px;
+    color: red;
+  }
+
   form input, form label, form button {
     display: block;
     width: 100%;
