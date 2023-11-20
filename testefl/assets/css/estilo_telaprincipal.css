@@ -42,7 +42,7 @@
     height: 65px;
 }
 
-.menu a:hover {
+.menu .hv:hover {
     background: rgba(0, 0, 0, 0.3);
     transition: 0.3s;
 }

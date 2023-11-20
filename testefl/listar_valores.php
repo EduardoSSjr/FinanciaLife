@@ -61,12 +61,12 @@ $dados_json = json_encode($dados_grafico);
     <header>
         <div class="menu">
             <div class="menu-left">
-                <a href="#">☰</a> <!-- Ícone para o menu (pode ser ativado com JavaScript) -->
+                <a class="hv" href="#">☰</a> <!-- Ícone para o menu (pode ser ativado com JavaScript) -->
                 <a class="logo" href="#"><img src="assets/imgs/logofl.png" alt="logo financialife"></a> <!-- Logotipo -->
             </div>
             <div class="menu-right">
-                <a class="menu-adc-part" href="#">+Adc. Participante</a> <!-- Link para adicionar participante -->
-                <a class="menu-entrar" href="login.html">Entrar</a> <!-- Link para página de login -->
+                <a class="menu-adc-part hv" href="#">+Adc. Participante</a> <!-- Link para adicionar participante -->
+                <a class="menu-entrar hv" href="login.html">Entrar</a> <!-- Link para página de login -->
             </div>
         </div>
     </header>
@@ -113,7 +113,7 @@ $dados_json = json_encode($dados_grafico);
                 echo '<td style="background-color: rgba(255, 0, 0, 0.9);">' . $row_despesas['gasto'] . '</td>';
                 echo '<td style="background-color: rgba(255, 0, 0, 0.9);">' . $data_despesa . '</td>';
                 echo '<td style="background-color: rgba(255, 0, 0, 0.9);">R$ ' . $row_despesas['valor_despesa'] . '</td>';
-                echo '<td style="background-color: rgba(255, 0, 0, 0.9);"><a class="texto_editar_despesa editadesp_ver" style="color: black;" ?id=' . $row_despesas['id'] . '">Editar</a></td>';
+                echo '<td style="background-color: rgba(255, 0, 0, 0.9);"><a class="texto_editar_despesa" style="color: black;" href="editar_despesa.php?id=' . $row_despesas['id'] . '">Editar</a></td>';
                 echo '</tr>';
             }
 
@@ -125,7 +125,7 @@ $dados_json = json_encode($dados_grafico);
                 echo '<td style="background-color: rgba(75, 210, 49, 0.9);">' . $row_receitas['receber'] . '</td>';
                 echo '<td style="background-color: rgba(75, 210, 49, 0.9);">' . $data_receita . '</td>';
                 echo '<td style="background-color: rgba(75, 210, 49, 0.9);">R$ ' . $row_receitas['valor_receita'] . '</td>';
-                echo '<td style="background-color: rgba(75, 210, 49, 0.9);"><a class="texto_editar_receita editarec_ver" style="color: black;" ?id=' . $row_receitas['id'] . '">Editar</a></td>';
+                echo '<td style="background-color: rgba(75, 210, 49, 0.9);"><a class="texto_editar_receita" style="color: black;" href="editar_receita.php?id=' . $row_receitas['id'] . '">Editar</a></td>'; 
                 echo '</tr>';
             }
 
@@ -249,7 +249,7 @@ $dados_json = json_encode($dados_grafico);
                     if ($linha['tipo'] === 'despesa') {
                         echo "<td><a class=\"texto_editar_despesa\" href='editar_despesa.php?id=" . $linha['id'] . "'>Editar</a></td>";
                     } elseif ($linha['tipo'] === 'receita') {
-                        echo "<td><a class=\"texto_editar_receita editarec_ver\" ?id=" . $linha['id'] . "'>Editar</a></td>";
+                        echo "<td><a class=\"texto_editar_receita\" href='editar_receita.php?id=" . $linha['id'] . "'>Editar</a></td>";
                     }
                     
                     echo "</tr>";

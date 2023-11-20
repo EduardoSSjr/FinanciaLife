@@ -65,3 +65,8 @@ body {
     border-radius: 2rem;
     text-align: center;
 }
+
+.botoes-adc {
+  display: flex;
+  justify-content: space-between;
+}

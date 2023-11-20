@@ -43,7 +43,10 @@ if (isset($_GET['id'])) {
         <input type="text" name="valor" value="<?php echo $valor; ?>"><br>
         <input type="submit" value="Salvar Alterações">
 
-        <a href="excluir_despesa.php?id=<?php echo $id; ?>" class="excluir-button">Excluir Despesa</a>
+        <div class="botoes-adc">
+        <a style="color: red;" href="excluir_despesa.php?id=<?php echo $id; ?>" class="excluir-button">Excluir Despesa</a>
+        <a style="color: black;" href="listar_valores.php">Voltar</a>
+        </div>
     </form>
     </section>
 </body>
