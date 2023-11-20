@@ -17,11 +17,7 @@ if (isset($_GET['id'])) {
     } else {
         // Redirecione ou mostre uma mensagem de erro caso a despesa não seja encontrada
     }
-} else {
-    // Redirecione ou mostre uma mensagem de erro se o parâmetro 'id' não estiver presente na URL
-}
-
-// Aqui você cria um formulário para editar os detalhes da despesa
+} 
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +27,7 @@ if (isset($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Despesa</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/estilo_adicionar.css">
+    <link rel="stylesheet" href="assets/css/estilo_adicionarb.css">
 </head>
 <body>
 

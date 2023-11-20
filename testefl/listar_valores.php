@@ -247,7 +247,7 @@ $dados_json = json_encode($dados_grafico);
                     echo "<td>$valor</td>";
                     
                     if ($linha['tipo'] === 'despesa') {
-                        echo "<td><a class=\"texto_editar_despesa editadesp_ver\" ?id=" . $linha['id'] . "'>Editar</a></td>";
+                        echo "<td><a class=\"texto_editar_despesa\" href='editar_despesa.php?id=" . $linha['id'] . "'>Editar</a></td>";
                     } elseif ($linha['tipo'] === 'receita') {
                         echo "<td><a class=\"texto_editar_receita editarec_ver\" ?id=" . $linha['id'] . "'>Editar</a></td>";
                     }
@@ -421,14 +421,13 @@ $dados_json = json_encode($dados_grafico);
             <modal class="editarec_modal m_start hidden">
             <?php
             include 'conexao.php';
-
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
-
-                // Execute uma consulta SQL para obter os detalhes da receita com base no ID
-                $sql = "SELECT * FROM receitas WHERE id = $id";
+            
+                // Execute uma consulta SQL para obter os detalhes da despesa com base no ID
+                $sql = "SELECT * FROM receita WHERE id = $id";
                 $result = $conn->query($sql);
-
+            
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
                     $tipo = 'receita';
@@ -436,11 +435,9 @@ $dados_json = json_encode($dados_grafico);
                     $data = $row['rec_data'];
                     $valor = $row['valor_receita'];
                 } else {
-                    // Redirecione ou mostre uma mensagem de erro caso a receita não seja encontrada
+                    // Redirecione ou mostre uma mensagem de erro caso a despesa não seja encontrada
                 }
-            } else {
-                // Redirecione ou mostre uma mensagem de erro se o parâmetro 'id' não estiver presente na URL
-            }
+            } 
             ?>
 
                 <div class="m_wrap">
@@ -451,7 +448,7 @@ $dados_json = json_encode($dados_grafico);
                         
                     <section class="container-editar">
                     <h1>Editar Receita</h1>
-                    <form action="atualizar_receita.php" class="form-editar" method="post">
+                    <form action="atualizar_receita.php" method="post">
                         <input type="hidden" name="id" value="<?php echo $id; ?>"> <!-- Inclua o ID como um campo oculto -->
                         <label for="titulo">Título:</label>
                         <input type"text" name="titulo" value="<?php echo $titulo; ?>"><br>
@@ -459,7 +456,7 @@ $dados_json = json_encode($dados_grafico);
                         <input type="date" name="data" value="<?php echo $data; ?>"><br>
                         <label for="valor">Valor:</label>
                         <input type="text" name="valor" value="<?php echo $valor; ?>"><br>
-                        <button type="submit">Atualizar Receita</button>
+                        <input type="submit" value="Salvar Alterações">
 
                         <a href="excluir_receita.php?id=<?php echo $id; ?>" class="excluir-button">Excluir Receita</a>
                     </form>

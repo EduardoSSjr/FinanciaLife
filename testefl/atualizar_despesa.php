@@ -17,6 +17,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Exiba uma mensagem de erro em caso de falha na atualização
         echo "Erro ao atualizar a despesa: " . $conn->error;
     }
-} else {
-    // Redirecione ou mostre uma mensagem de erro caso o formulário não tenha sido enviado
 }
