@@ -4,22 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>Cadastro</title>
+       <title>Login</title>
     
        <script ></script>
-    <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
     <script src="https://kit.fontawesome.com/cf6fa412bd.js"></script>
 </head>
 
 <body>
     <div class="container">
-        
+        <a href="listar_valores.php"><span class="close-button" id="closeFormButton">&times;</span></a>
         <div><hr class="divisao"></div>
-            <form id="login">
-            <input type="text" id="validateEmail" placeholder="Email" required />
+            <form id="login" method="post" action="login_usuario.php">
+
+            <input type="text" id="email" name="email" placeholder="Email" required />
             <i class="fas fa-envelope iEmail"></i>
-            <input type="password" id="validateEmail" placeholder="Password" required/>
+            
+            <input type="password" id="senha" name="senha" placeholder="Password" required/>
             <i class="fas fa-lock iPassword"></i>
+            
             <div id="divcheck">
                 <input type="checkbox" />
                 <span>Remember Password</span>
