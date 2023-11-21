@@ -36,5 +36,5 @@ CREATE TABLE USUARIO (
     id int(4) AUTO_INCREMENT PRIMARY KEY,
     nome varchar(60) NOT NULL,
     email varchar(50) NOT NULL,
-    sneha varchar(20) NOT NULL
+    senha varchar(20) NOT NULL
 )
