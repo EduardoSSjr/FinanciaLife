@@ -178,7 +178,7 @@ $dados_json = json_encode($dados_grafico);
                             echo number_format($valor_saldoatual, 2, ',', '.') . "<br>";
                         }
                     } else {
-                        echo "R$00,00";
+                        echo "00,00";
                     }
                     ?>
 
