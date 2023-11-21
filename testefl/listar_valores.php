@@ -66,7 +66,26 @@ $dados_json = json_encode($dados_grafico);
             </div>
             <div class="menu-right">
                 <a class="menu-adc-part hv" href="#">+Adc. Participante</a> <!-- Link para adicionar participante -->
-                <a class="menu-entrar hv" href="login.html">Entrar</a> <!-- Link para página de login -->
+
+                <?php
+            include 'conexao.php'; // Inclua o arquivo de conexão com o banco de dados
+
+            // Consulta SQL para verificar se há um valor na tabela 'saldoatual'
+            $sql_verificar_usuario = "SELECT COUNT(*) as total_email FROM USUARIO";
+            $result_verificar_usuario = $conn->query($sql_verificar_usuario);
+            $row_verificar_usuario = $result_verificar_usuario->fetch_assoc();
+
+            // Verifique se há registros na tabela 'saldoatual'
+            if ($row_verificar_usuario['total_email'] > 0) {
+                echo '<a class="menu-entrar hv" href="#">Encerrar sessão</a>';
+            } else {
+                // Exibir o botão
+                echo '<a class="menu-entrar hv" href="cadastro.html">Entrar</a>';
+            }
+        ?>
+
+                
+
             </div>
         </div>
     </header>
@@ -640,11 +659,3 @@ $dados_json = json_encode($dados_grafico);
 
 </body>
 </html>
-
-<input type="submit" value="Novo pedido"
-    onclick="location.href='cadastro_pedido.php'">
-<input type="submit" value="SITE"
-    onclick="location.href='adc_despesa.php'">
-
-     
-
